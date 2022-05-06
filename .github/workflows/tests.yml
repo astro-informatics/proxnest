@@ -33,6 +33,6 @@ jobs:
     
     - name: Run tests
       run: |
-        pytest --cov-report term --cov=project_name --cov-config=.coveragerc 
+        pytest --cov-report term --cov=ProxNest --cov-config=.coveragerc 
         codecov --token eb6c2b0b-4ad0-4c7d-9d8a-1d22cdf79673
 
