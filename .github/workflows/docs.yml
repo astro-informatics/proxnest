@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.9]
 
     steps:
     - name: Checkout Source
@@ -28,15 +28,15 @@ jobs:
       run: |
         sudo apt install pandoc
         python -m pip install --upgrade pip    
-        bash build_project_name.sh
+        bash build_proxnest.sh
 
     - name: Build Documentation
       run: |
         cd docs && make html
 
-    - name: Deploy
-      if: github.ref == 'refs/heads/main'
-      uses: JamesIves/github-pages-deploy-action@4.1.5
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: docs/_build/html # The folder the action should deploy.
+    # - name: Deploy
+    #   if: github.ref == 'refs/heads/main'
+    #   uses: JamesIves/github-pages-deploy-action@4.1.5
+    #   with:
+    #     branch: gh-pages # The branch the action should deploy to.
+    #     folder: docs/_build/html # The folder the action should deploy.
