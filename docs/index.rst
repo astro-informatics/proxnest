@@ -6,7 +6,7 @@
     :target: https://github.com/astro-informatics/proxnest/actions/workflows/python.yml
 .. |Docs| image:: https://readthedocs.org/projects/ansicolortags/badge/?version=latest
     :target: https://astro-informatics.github.io/proxnest
-.. |CodeCov| image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=8QMXOZK746
+.. |CodeCov| image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN
     :target: https://codecov.io/gh/astro-informatics/proxnest
 .. |GPL License| image:: https://img.shields.io/badge/License-GPL-blue.svg
     :target: http://perso.crans.org/besson/LICENSE.html

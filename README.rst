@@ -4,13 +4,13 @@
     :target: https://github.com/astro-informatics/proxnest/actions/workflows/python.yml
 .. image:: https://readthedocs.org/projects/ansicolortags/badge/?version=latest
     :target: https://astro-informatics.github.io/proxnest
-.. image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=8QMXOZK746
+.. image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN
     :target: https://codecov.io/gh/astro-informatics/proxnest
 .. image:: https://img.shields.io/badge/License-GPL-blue.svg
     :target: http://perso.crans.org/besson/LICENSE.html
 .. image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
     :target: https://arxiv.org/abs/2106.03646
-
+    
 |logo| ProxNest: Proximal nested sampling for high-dimensional Bayesian inference
 =================================================================================================================
 
