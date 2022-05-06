@@ -2,7 +2,7 @@
     :target: https://github.com/astro-informatics/proxnest
 .. image:: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg?branch=main
     :target: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml
-.. image:: https://readthedocs.org/projects/ansicolortags/badge/?version=latest
+.. image:: https://github.com/astro-informatics/proxnest/actions/workflows/docs.yml/badge.svg
     :target: https://astro-informatics.github.io/proxnest
 .. image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN
     :target: https://codecov.io/gh/astro-informatics/proxnest
