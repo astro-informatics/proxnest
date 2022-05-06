@@ -1,7 +1,7 @@
 .. image:: https://img.shields.io/badge/GitHub-PyTemplate-brightgreen.svg?style=flat
     :target: https://github.com/astro-informatics/proxnest
-.. image:: https://github.com/astro-informatics/proxnest/actions/workflows/python.yml/badge.svg?branch=main
-    :target: https://github.com/astro-informatics/proxnest/actions/workflows/python.yml
+.. image:: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg?branch=main
+    :target: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml
 .. image:: https://readthedocs.org/projects/ansicolortags/badge/?version=latest
     :target: https://astro-informatics.github.io/proxnest
 .. image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN
