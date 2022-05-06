@@ -11,12 +11,12 @@
 .. image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
     :target: https://arxiv.org/abs/2106.03646
     
-|logo| ProxNest: Proximal nested sampling for high-dimensional Bayesian inference
+|logo| Proximal nested sampling for high-dimensional Bayesian inference
 =================================================================================================================
 
 .. |logo| raw:: html
 
-   <img src="./docs/assets/placeholder_logo.png" align="center" height="80" width="80">
+   <img src="./docs/assets/ProxNestLogo.png" align="center" height="80" width="80">
 
 This is a very loose framework for people to start python projects from. To get up and running, go through the code carefully replacing ``Project-name`` with your 
 desired project name (check all documents!), don't forget to change the directory project_name as well! You will also need to update the links in all badges!
