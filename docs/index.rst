@@ -1,6 +1,6 @@
 |GitHub| |Build Status| |Docs| |CodeCov| |GPL license| |ArXiv|
 
-.. |GitHub| image:: https://img.shields.io/badge/GitHub-PyTemplate-brightgreen.svg?style=flat
+.. |GitHub| image:: https://img.shields.io/badge/GitHub-ProxNest-brightgreen.svg?style=flat
     :target: https://github.com/astro-informatics/proxnest
 .. |Build Status| image:: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg
     :target: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml

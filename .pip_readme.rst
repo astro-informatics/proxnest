@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/GitHub-PyTemplate-brightgreen.svg?style=flat
+.. image:: https://img.shields.io/badge/GitHub-ProxNest-brightgreen.svg?style=flat
     :target: https://github.com/astro-informatics/proxnest
 .. image:: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg?branch=main
     :target: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml
