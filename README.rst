@@ -1,17 +1,17 @@
 .. image:: https://img.shields.io/badge/GitHub-PyTemplate-brightgreen.svg?style=flat
-    :target: https://github.com/astro-informatics/code_template
-.. image:: https://github.com/astro-informatics/code_template/actions/workflows/python.yml/badge.svg?branch=main
-    :target: https://github.com/astro-informatics/code_template/actions/workflows/python.yml
+    :target: https://github.com/astro-informatics/proxnest
+.. image:: https://github.com/astro-informatics/proxnest/actions/workflows/python.yml/badge.svg?branch=main
+    :target: https://github.com/astro-informatics/proxnest/actions/workflows/python.yml
 .. image:: https://readthedocs.org/projects/ansicolortags/badge/?version=latest
-    :target: https://astro-informatics.github.io/code_template
-.. image:: https://codecov.io/gh/astro-informatics/code_template/branch/main/graph/badge.svg?token=8QMXOZK746
-    :target: https://codecov.io/gh/astro-informatics/code_template
+    :target: https://astro-informatics.github.io/proxnest
+.. image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=8QMXOZK746
+    :target: https://codecov.io/gh/astro-informatics/proxnest
 .. image:: https://img.shields.io/badge/License-GPL-blue.svg
     :target: http://perso.crans.org/besson/LICENSE.html
-.. image:: http://img.shields.io/badge/arXiv-xxxx.xxxxx-orange.svg?style=flat
-    :target: https://arxiv.org/abs/xxxx.xxxxx
+.. image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
+    :target: https://arxiv.org/abs/2106.03646
 
-|logo| <project-name>
+|logo| ProxNest: Proximal nested sampling for high-dimensional Bayesian inference
 =================================================================================================================
 
 .. |logo| raw:: html
@@ -68,30 +68,34 @@ To deploy the code on PyPi first test the deployment on PyPi's mirror site by, f
 
 From the root directory. Keep in mind that installing from the mirror site won't automatically find dependencies, so if you have an error because the pacakge can't find numpy that's probably why, and may not be an issue on the main PyPi site. To deploy the main PyPi site simply remove the --repostiry-url name, note that you can add multiple wheels to dist/*, to provide a package which may be pip installed for multiple python version, and on multiple machine architectures.
 
+Contributors
+============
+Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price, and contributors.
+
 Attribution
 ===========
-A BibTeX entry for <project-name> is:
+A BibTeX entry for ``ProxNest`` is:
 
 .. code-block:: 
 
-     @article{<project-name>, 
-        author = {Author~List},
-         title = {"A totally amazing name"},
+     @article{Cai:ProxNest:2021, 
+        author = {Cai, Xiaohao and McEwen, Jason~D. and Pereyra, Marcelo},
+         title = {"High-dimensional Bayesian model selection by proximal nested sampling"},
        journal = {ArXiv},
-        eprint = {arXiv:0000.00000},
-          year = {what year is it?!}
+        eprint = {arXiv:2106.03646},
+          year = {2021}
      }
 
 License
 =======
 
-``<project-name>`` is released under the GPL-3 license (see `LICENSE.txt <https://github.com/astro-informatics/code_template/blob/main/LICENSE.txt>`_), subject to 
-the non-commercial use condition (see `LICENSE_EXT.txt <https://github.com/astro-informatics/code_template/blob/main/LICENSE_EXT.txt>`_)
+``ProxNest`` is released under the GPL-3 license (see `LICENSE.txt <https://github.com/astro-informatics/proxnest/blob/main/LICENSE.txt>`_), subject to 
+the non-commercial use condition (see `LICENSE_EXT.txt <https://github.com/astro-informatics/proxnest/blob/main/LICENSE_EXT.txt>`_)
 
 .. code-block::
 
-     LatentWaves
-     Copyright (C) 2022 Author names & contributors
+     ProxNest
+     Copyright (C) 2022 Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price & contributors
 
      This program is released under the GPL-3 license (see LICENSE.txt), 
      subject to a non-commercial use condition (see LICENSE_EXT.txt).

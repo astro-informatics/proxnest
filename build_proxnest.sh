@@ -1,4 +1,4 @@
-# <This script needs to be ran from within <Project-name> root directory>
+# <This script needs to be ran from within proxnest root directory>
 
 # Install core and extra requirements
 echo -ne 'Building Dependencies... \r'
@@ -13,5 +13,5 @@ echo -ne '\n'
 # Install specific converter for building tutorial documentation
 conda install pandoc=1.19.2.1 -y
 
-# Build the scattering emulator
+# Build the proximal nested sampling package locally
 pip install -e .

@@ -10,8 +10,8 @@ conditions in the License, the grant of rights under the License will not
 include, and the License does not grant to you, the right to use the Software
 for commercial uses.
 
-Software: harmonic
+Software: ProxNest
 
 License: See LICENSE.txt (GPL-3)
 
-Licensor: Authors names
+Licensor: Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price, and contributors

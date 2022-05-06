@@ -2,7 +2,7 @@ import os
 import logging.config
 import logging
 import yaml
-import project_name
+import ProxNest
 import colorlog
 
 
@@ -27,7 +27,7 @@ def setup_logging(custom_yaml_path=None, default_level=logging.DEBUG):
     """
     if custom_yaml_path == None:
         path = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.realpath(project_name.__file__)))
+            os.path.dirname(os.path.dirname(os.path.realpath(ProxNest.__file__)))
             + "/logs/logging.yaml"
         )
     if custom_yaml_path != None:
@@ -40,19 +40,19 @@ def setup_logging(custom_yaml_path=None, default_level=logging.DEBUG):
             config = yaml.safe_load(f.read())
         if custom_yaml_path == None:
             config["handlers"]["info_file_handler"]["filename"] = os.path.join(
-                os.path.dirname(os.path.dirname(os.path.realpath(project_name.__file__)))
+                os.path.dirname(os.path.dirname(os.path.realpath(ProxNest.__file__)))
                 + "/logs/info.log"
             )
             config["handlers"]["debug_file_handler"]["filename"] = os.path.join(
-                os.path.dirname(os.path.dirname(os.path.realpath(project_name.__file__)))
+                os.path.dirname(os.path.dirname(os.path.realpath(ProxNest.__file__)))
                 + "/logs/debug.log"
             )
             config["handlers"]["critical_file_handler"]["filename"] = os.path.join(
-                os.path.dirname(os.path.dirname(os.path.realpath(project_name.__file__)))
+                os.path.dirname(os.path.dirname(os.path.realpath(ProxNest.__file__)))
                 + "/logs/critical.log"
             )
             config["handlers"]["info_file_handler"]["filename"] = os.path.join(
-                os.path.dirname(os.path.dirname(os.path.realpath(project_name.__file__)))
+                os.path.dirname(os.path.dirname(os.path.realpath(ProxNest.__file__)))
                 + "/logs/info.log"
             )
         logging.config.dictConfig(config)
@@ -70,7 +70,7 @@ def debug_log(message):
         message: Message to log.
 
     """
-    logger = logging.getLogger("ProjectName")
+    logger = logging.getLogger("ProxNest")
     logger.debug(message)
 
 
@@ -83,7 +83,7 @@ def warning_log(message):
         message: Warning to log.
 
     """
-    logger = logging.getLogger("ProjectName")
+    logger = logging.getLogger("ProxNest")
     logger.warning(message)
 
 
@@ -95,7 +95,7 @@ def critical_log(message):
         message: Message to log.
 
     """
-    logger = logging.getLogger("ProjectName")
+    logger = logging.getLogger("ProxNest")
     logger.critical(message)
 
 
@@ -108,5 +108,5 @@ def info_log(message):
         message: Message to log.
 
     """
-    logger = logging.getLogger("ProjectName")
+    logger = logging.getLogger("ProxNest")
     logger.info(message)

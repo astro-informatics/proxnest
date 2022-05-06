@@ -19,9 +19,9 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'ProjectName'
-copyright = '2022, Author names'
-author = 'Author names'
+project = 'ProxNest'
+copyright = '2022, Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price'
+author = 'Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price'
 
 # The short X.Y version
 version = '0.0.1'
@@ -139,7 +139,7 @@ html_css_files = [
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ProjectNamedoc'
+htmlhelp_basename = 'ProxNestdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -166,7 +166,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ProjectName.tex', 'ProjectName Documentation',
+    (master_doc, 'ProxNest.tex', 'ProxNest Documentation',
      'Author names', 'manual'),
 ]
 
@@ -176,7 +176,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'project_name', 'ProjectName Documentation',
+    (master_doc, 'proxnest', 'ProxNest Documentation',
      [author], 1)
 ]
 
@@ -187,8 +187,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ProjectName', 'ProjectName Documentation',
-     author, 'ProjectName', 'A witty project description!',
+    (master_doc, 'ProxNest', 'ProxNest Documentation',
+     author, 'ProxNest', 'Proximal nested sampling for high-dimensional Bayesian inference',
      'Miscellaneous'),
 ]
 
@@ -196,7 +196,7 @@ texinfo_documents = [
 # -- Options for Epub output -------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = project
+epub_title = "proxnest"
 
 # The unique identifier of the text. This can be a ISBN number
 # or the project homepage.

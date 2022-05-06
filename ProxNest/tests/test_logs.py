@@ -1,4 +1,4 @@
-import project_name.logs as lg
+import ProxNest.logs as lg
 import pytest
 
 
