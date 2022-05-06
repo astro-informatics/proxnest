@@ -23,11 +23,6 @@ Installation
 
 Add some basic installation instructions here.
     
-Documentation
-=============
-
-Link to the full documentation (when deployed).
-
 Contributors
 ============
 Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price, and contributors.

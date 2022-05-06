@@ -21,53 +21,6 @@
 This is a very loose framework for people to start python projects from. To get up and running, go through the code carefully replacing ``Project-name`` with your 
 desired project name (check all documents!), don't forget to change the directory project_name as well! You will also need to update the links in all badges!
 
-
-Auto-formatting code
-====================
-To keep the code readable and organised you should (strongly) consider using the ``black`` package. Whenever you are finished updating a file, just run 
-
-.. code-block:: bash
-
-    black <file_to_tidy.py>
-
-or alternatively format everything by running
-
-.. code-block:: bash
-
-    black project_name/*
-
-This is important as the CI enforces black formatting (this can be disabled by removing the --black flag in pytest) so your unit tests will fail if you don't do this!
-
-CodeCov
-============
-To set up code coverage you will need to enter this  
-
-.. code-block:: bash
-
-    https://codecov.io/gh/{account-name}/{desired-repo} 
-
-into any browser, then go to settings and activate the repository. You will then need to find the ``repository upload token`` which 
-should be added to the github actions script (roughly line 29)
-
-.. code-block::
-
-    codecov --token <add your token here>
-
-Next time CI runs on main branch it will automatically update codecov. Now go back to codecov, copy the badge and put it in the readme, .pipreadme, and 
-the root index of the documentation!
-
-PyPi
-=====
-To deploy the code on PyPi first test the deployment on PyPi's mirror site by, first making an account on https://test.pypi.org and then running 
-
-.. code-block:: bash 
-
-    python setup.py bdist_wheel --universal
-    twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-    pip install -i https://test.pypi.org/simple/ project_name
-
-From the root directory. Keep in mind that installing from the mirror site won't automatically find dependencies, so if you have an error because the pacakge can't find numpy that's probably why, and may not be an issue on the main PyPi site. To deploy the main PyPi site simply remove the --repostiry-url name, note that you can add multiple wheels to dist/*, to provide a package which may be pip installed for multiple python version, and on multiple machine architectures.
-
 Contributors
 ============
 Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price, and contributors.
