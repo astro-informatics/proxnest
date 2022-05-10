@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def augmented_TV_norm_prox(x, lamb, params):
     r"""Compute the augmented total variation proximal operator
 
@@ -10,7 +11,7 @@ def augmented_TV_norm_prox(x, lamb, params):
 
         x^* = \min_{x} ||y - x||_2^2 + \lambda * ||A x||_{TV}
 
-    where :math:`y` is the input vector and the solution :math:`x^*` is returned as sol.  
+    where :math:`y` is the input vector and the solution :math:`x^*` is returned as sol.
 
     Args:
         x (np.ndarray): A sample position :math:`x` in the posterior space.

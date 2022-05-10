@@ -1,5 +1,6 @@
-import numpy as np 
-from . import sensing_operators as sense 
+import numpy as np
+from . import sensing_operators as sense
+
 
 def soft_thresh(x, T, delta=2):
     r"""Compute the element-wise soft-thresholding of :math:`x`.
@@ -14,7 +15,8 @@ def soft_thresh(x, T, delta=2):
     Returns:
         np.ndarray: Thresholded coefficients of :math:`x`.
     """
-    return np.sign(x)*np.maximum(np.abs(x) - T*delta/2, 0)
+    return np.sign(x) * np.maximum(np.abs(x) - T * delta / 2, 0)
+
 
 def hard_thresh(x, T):
     r"""Compute the element-wise hard-thresholding of :math:`x`.
@@ -30,6 +32,7 @@ def hard_thresh(x, T):
         np.ndarray: Thresholded coefficients of :math:`x`.
     """
     return x * (np.abs(x) > T).astype(float)
+
 
 def l1_projection(x, T, delta, Psi=sense.Identity):
     r"""Compute the l1 proximal operator wrt dictionary :math:`\Psi`.
@@ -49,6 +52,7 @@ def l1_projection(x, T, delta, Psi=sense.Identity):
     u = Psi.dir_op(x)
     return x + Psi.adj_op(soft_thresh(u, T, delta) - u)
 
+
 def l2_projection(x, T, delta, Psi=sense.Identity):
     r"""Compute the l2 gradient step wrt dictionary :math:`\Psi`.
 
@@ -64,4 +68,4 @@ def l2_projection(x, T, delta, Psi=sense.Identity):
     Returns:
         np.ndarray: Thresholded coefficients of :math:`x`.
     """
-    return x -2*T*Psi.adj_op(Psi.dir_op(x))*2*delta
+    return x - 2 * T * Psi.adj_op(Psi.dir_op(x)) * 2 * delta
