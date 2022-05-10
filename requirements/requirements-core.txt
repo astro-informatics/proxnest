@@ -2,3 +2,6 @@
 numpy 
 colorlog
 pyyaml
+PyWavelets
+
+tqdm
