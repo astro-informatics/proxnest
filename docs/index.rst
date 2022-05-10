@@ -13,21 +13,12 @@
 .. |ArXiv| image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
     :target: https://arxiv.org/abs/2106.03646
 
-ProxNest: Proximal nested sampling for high-dimensional Bayesian inference
-=================================================================================================================
+ProxNest
+========
 
-Add some basic discussion about ``ProxNest`` here.
+``ProxNest`` is an open source, well tested and documented Python implementation of the *proximal nested sampling* algorithm (`Cai et al. 2022 <https://arxiv.org/pdf/2106.03646.pdf>`_) which is uniquely suited for sampling from very high-dimensional posteriors that are log-concave and potentially not smooth (*e.g.* Laplace priors). This is achieved by exploiting tools from proximal calculus and Moreau-Yosida regularisation (`Moreau 1962 <https://hal.archives-ouvertes.fr/hal-01867195/file/Fonctions_convexes_duales_points_proximaux_Moreau_CRAS_1962.pdf>`_) to efficiently sample from the prior subject to the hard likelihood constraint. The resulting Markov chain iterations include a gradient step, approximating (with arbitrary precision) an overdamped Langevin SDE that can scale to very high-dimensional applications.
 
-Installation
-============
-
-Add some basic installation instructions here.
-    
-Contributors
-============
-Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price, and contributors.
-
-Attribution
+Referencing
 ===========
 A BibTeX entry for ``ProxNest`` is:
 
@@ -40,24 +31,6 @@ A BibTeX entry for ``ProxNest`` is:
         eprint = {arXiv:2106.03646},
           year = {2021}
      }
-
-License
-=======
-
-``ProxNest`` is released under the GPL-3 license (see `LICENSE.txt <https://github.com/astro-informatics/code_template/blob/main/LICENSE.txt>`_), subject to 
-the non-commercial use condition (see `LICENSE_EXT.txt <https://github.com/astro-informatics/code_template/blob/main/LICENSE_EXT.txt>`_)
-
-.. code-block::
-
-     ProxNest
-     Copyright (C) 2022 Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price & contributors
-
-     This program is released under the GPL-3 license (see LICENSE.txt), 
-     subject to a non-commercial use condition (see LICENSE_EXT.txt).
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 .. bibliography:: 
     :notcited:
@@ -83,7 +56,7 @@ the non-commercial use condition (see `LICENSE_EXT.txt <https://github.com/astro
    :maxdepth: 1
    :caption: Interactive Tutorials
    
-   tutorials/example_notebook.nblink
+   tutorials/galaxy_denoising.nblink
 
 .. toctree::
    :hidden:

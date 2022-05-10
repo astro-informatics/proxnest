@@ -17,4 +17,4 @@ Some more details
 
 .. note:: A note for additional practical or theoretical considerations!
 
-..warning:: A warning for something that could or has gone wrong!
+.. warning:: A warning for something that could or has gone wrong!
