@@ -3,8 +3,6 @@ import numpy as np
 import ProxNest.utils as utils
 import ProxNest.optimisations as opts
 
-from skimage.metrics import structural_similarity as ssim
-
 
 @pytest.mark.parametrize("tight", [True, False])
 @pytest.mark.parametrize("pos", [True, False])
