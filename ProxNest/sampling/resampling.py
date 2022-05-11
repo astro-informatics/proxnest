@@ -1,13 +1,14 @@
-import numpy as np 
+import numpy as np
+
 
 def reorder_samples(samples, likelihood_values):
     r"""This program is to find the sample with the smallest likelihood and move it to the end of the list
 
-    Args: 
+    Args:
         samples (np.ndarray): given sample list
-        likeliVal (np.ndarray): corresponding likelihood 
+        likeliVal (np.ndarray): corresponding likelihood
 
-    Returns: 
+    Returns:
         tuple: Reordered version of (samples, likelihood_values)
 
     Notes:

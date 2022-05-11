@@ -1,5 +1,6 @@
-import numpy as np 
-import pywt 
+import numpy as np
+import pywt
+
 
 class db_wavelets:
     """Constructs a linear operator for abstract Daubechies Wavelets.
@@ -13,11 +14,11 @@ class db_wavelets:
 
         Args:
             wav (string): Wavelet type (see https://tinyurl.com/5n7wzpmb).
-            
+
             levels (list[int]): Wavelet levels (scales) to consider.
-            
+
             shape (list[int]): Dimensionality of input to wavelet transform.
-            
+
             axes (int): Which axes to perform wavelet transform (default = all axes).
 
         Raises:
@@ -45,7 +46,7 @@ class db_wavelets:
 
         Raises:
             ValueError: Raised when the shape of x is not even in every dimension.
-        
+
         Returns:
             np.ndarray: Flattened array of wavelet coefficients.
         """
@@ -72,13 +73,13 @@ class db_wavelets:
 
         Args:
             x (np.ndarray): Array to adjoint wavelet transform.
-        
+
         Returns:
             np.ndarray: Array of pixel-space coefficients.
         """
         if self.wav == "dirac":
             return np.reshape(x, self.shape)
-            
+
         coeffs_from_arr = pywt.unravel_coeffs(
             x, self.coeff_slices, self.coeff_shapes, output_format="wavedecn"
         )
