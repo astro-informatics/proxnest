@@ -9,7 +9,7 @@ def l1_norm_prox(x, lamb, params):
 
     .. math::
 
-        z^* = \min_{z} \frac{1}{2}||x - z||_2^2 + \lambda * ||\Psi^{\dagger} x||_1,
+        z^* = \min_{z} \frac{1}{2}||x - z||_2^2 + \lambda * ||\Psi^{\dagger} z||_1,
 
     where :math:`x` is the input vector and the solution :math:`z^*` is returned as sol.
 
@@ -34,10 +34,10 @@ def l1_norm_prox(x, lamb, params):
 
         temp = params["Psi"].dir_op(x)
         sol = x + 1 / params["nu"] * params["Psi"].adj_op(
-            ops.soft_thresh(temp, lamb * params["nu"] * params["weights"]) - temp
+            ops.proximal_operators.soft_thresh(temp, lamb * params["nu"] * params["l1weights"]) - temp
         )
         dummy = params["Psi"].dir_op(sol)
-        norm_l1 = np.sum(params["weights"] * np.abs(dummy))
+        norm_l1 = np.sum(params["l1weights"] * np.abs(dummy))
         crit_L1 = "REL_OBJ"
         iter_L1 = 1
 
@@ -61,7 +61,7 @@ def l1_norm_prox(x, lamb, params):
         while 1:
 
             # L1 norm of the estimate
-            norm_l1 = np.sum(params["weights"] * np.abs(dummy))
+            norm_l1 = np.sum(params["l1weights"] * np.abs(dummy))
             obj = 0.5 * np.linalg.norm(x - sol, 2) ** 2 + lamb * norm_l1
             rel_obj = np.abs(obj - prev_obj) / obj
 
@@ -83,7 +83,7 @@ def l1_norm_prox(x, lamb, params):
 
             # Soft-thresholding
             res = u_l1 * params["nu"] + dummy
-            dummy = ops.soft_thresh(res, lamb * params["nu"] * params["weights"])
+            dummy = ops.proximal_operators.soft_thresh(res, lamb * params["nu"] * params["l1weights"])
             u_l1 = 1 / params["nu"] * (res - dummy)
             sol = x - params["Psi"].adj_op(u_l1)
 
