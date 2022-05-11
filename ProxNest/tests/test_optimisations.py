@@ -26,7 +26,6 @@ def test_l2_ball_projection(tight: bool, pos: bool):
 
     # Evaluate the projection algorithm
     z = opts.l2_ball_proj.sopt_fast_proj_B2(x0, tau, params)
-
     assert np.linalg.norm(data - z) < tau
 
 
