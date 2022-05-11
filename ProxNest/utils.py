@@ -64,6 +64,8 @@ def create_parameters_dict(
     params["u"] = u
     params["pos"] = pos
     params["reality"] = reality
+    params["l1weights"] = l1weights
+    params["rel_obj"] = rel_obj
 
     return params
 
