@@ -48,7 +48,9 @@ The following is a straightforward example application to image denoising (Phi =
     LogLikeliL = lambda sol : - np.linalg.norm(y-phi.dir_op(sol), 'fro')**2/(2*sigma**2)
 
     # Perform proximal nested sampling
-    BayEvi, XTrace = ProxNest.sampling.proximal_nested.ProxNestedSampling(np.abs(phi.adj_op(data)), LogLikeliL, proxH, proxB, params, options)
+    BayEvi, XTrace = ProxNest.sampling.proximal_nested.ProxNestedSampling(
+        np.abs(phi.adj_op(data)), LogLikeliL, proxH, proxB, params, options
+        )
 
 At this point you have recovered the tuple **BayEvi** and dict **Xtrace** which contain 
 
