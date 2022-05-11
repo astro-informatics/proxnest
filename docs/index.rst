@@ -57,6 +57,7 @@ A BibTeX entry for ``ProxNest`` is:
    :caption: Interactive Tutorials
    
    tutorials/galaxy_denoising.nblink
+   tutorials/galaxy_radio.nblink
 
 .. toctree::
    :hidden:
