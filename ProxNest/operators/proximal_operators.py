@@ -34,7 +34,7 @@ def hard_thresh(x, T):
     return x * (np.abs(x) > T).astype(float)
 
 
-def l1_projection(x, T, delta, Psi=sense.Identity):
+def l1_projection(x, T, delta, Psi=sense.Identity()):
     r"""Compute the l1 proximal operator wrt dictionary :math:`\Psi`.
 
     Args:
@@ -53,7 +53,7 @@ def l1_projection(x, T, delta, Psi=sense.Identity):
     return x + Psi.adj_op(soft_thresh(u, T, delta) - u)
 
 
-def l2_projection(x, T, delta, Psi=sense.Identity):
+def l2_projection(x, T, delta, Psi=sense.Identity()):
     r"""Compute the l2 gradient step wrt dictionary :math:`\Psi`.
 
     Args:
