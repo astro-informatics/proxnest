@@ -8,14 +8,14 @@ def sopt_fast_proj_B2(x, tau, params):
 
     .. math::
 
-        z^* = \min_{z} ||x - z||_2^2   s.t.  ||y - \Phi z||_2 < \epsilon
+        z^* = \min_{z} ||x - z||_2^2   s.t.  ||y - \Phi z||_2 < \tau
 
     where :math:`x` is the input vector and the solution :math:`z^*` is returned as sol.
 
     Args:
         x (np.ndarray): A sample position :math:`x` in the posterior space.
 
-        tau (float): Radius of :math:`\ell_2`-ball.
+        tau (float): Radius of likelihood :math:`\ell_2`-ball.
 
         params (dict): Dictionary of parameters defining the optimisation.
 

@@ -4,8 +4,8 @@ from ProxNest.operators import sensing_operators as sense
 
 def create_parameters_dict(
     y=0,
-    Phi=sense.Identity,
-    Psi=sense.Identity,
+    Phi=sense.Identity(),
+    Psi=sense.Identity(),
     epsilon=1e-3,
     tight=True,
     nu=1,
@@ -15,7 +15,7 @@ def create_parameters_dict(
     u=0,
     pos=False,
     reality=False,
-    l1weights=None,
+    l1weights=1,
     rel_obj=0,
 ):
     r"""Compiles a dictionary of parameters for code simplicity
@@ -45,7 +45,7 @@ def create_parameters_dict(
 
         reality (bool): Reality flag (True = real solution, 0 (default) = general complex case).
 
-        l1weights (np.ndarray): Reweighting of thresholding of :math:`\ell_1`-norm (default = None).
+        l1weights (np.ndarray): Reweighting of thresholding of :math:`\ell_1`-norm (default = 1).
 
         rel_obj (float): Stopping criterion for :math:`\ell_1` proximal sub-iterations (default = 0).
 
@@ -55,6 +55,7 @@ def create_parameters_dict(
     params = {}
     params["y"] = y
     params["Phi"] = Phi
+    params["Psi"] = Psi
     params["epsilon"] = epsilon
     params["tight"] = tight
     params["nu"] = nu
@@ -64,6 +65,8 @@ def create_parameters_dict(
     params["u"] = u
     params["pos"] = pos
     params["reality"] = reality
+    params["l1weights"] = l1weights
+    params["rel_obj"] = rel_obj
 
     return params
 
