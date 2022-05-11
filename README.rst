@@ -23,7 +23,7 @@
 Basic Usage
 ===========
 
-The following is a straightforward example application to image denoising (:math:`\Phi = \mathbb{I}`), regularised with Daubechies wavelets (:math:`\Psi_{DB}`).
+The following is a straightforward example application to image denoising (Phi = I), regularised with Daubechies wavelets (DB6). 
 
 .. code-block:: Python
 
