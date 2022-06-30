@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Some background information &mdash; ProxNest 0.0.1 documentation</title>
+  <title>&lt;no title&gt; &mdash; ProxNest 0.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -18,7 +18,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/tabs.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="../_static/dark_mode_js/default_light.js"></script>
         <script src="../_static/dark_mode_js/theme_switcher.js"></script>
@@ -58,7 +57,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Namespaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Namespaces</a></li>
 </ul>
 
         </div>
@@ -75,9 +74,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Some background information</li>
+      <li>&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/background/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/resampling.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -109,24 +108,29 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="some-background-information">
-<h1>Some background information<a class="headerlink" href="#some-background-information" title="Permalink to this headline"></a></h1>
-<p>Add some back ground text here</p>
-<div class="section" id="a-subtitle-alluding-to-more-details">
-<h2>A subtitle alluding to more details<a class="headerlink" href="#a-subtitle-alluding-to-more-details" title="Permalink to this headline"></a></h2>
-<p>Some more details</p>
-<div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Some</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Nice</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Tabs</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"></div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"></div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"></div></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A note for additional practical or theoretical considerations!</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>A warning for something that could or has gone wrong!</p>
-</div>
-</div>
-</div>
+<span class="target" id="module-ProxNest.sampling.resampling"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.sampling.resampling.reorder_samples">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.sampling.resampling.</span></span><span class="sig-name descname"><span class="pre">reorder_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">likelihood_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.sampling.resampling.reorder_samples" title="Permalink to this definition"></a></dt>
+<dd><p>This program is to find the sample with the smallest likelihood and move it to the end of the list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<em>np.ndarray</em>) – given sample list</p></li>
+<li><p><strong>likeliVal</strong> (<em>np.ndarray</em>) – corresponding likelihood</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reordered version of (samples, likelihood_values)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>MATLAB version: Xiaohao Cai (30/01/2019)</p>
+<p>Python version: Matthew Price (10/05/2022)</p>
+</dd></dl>
+
 
 
            </div>

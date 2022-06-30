@@ -76,7 +76,7 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
       <li>&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/logs.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/sense_ops.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -108,71 +108,100 @@
     text-align: unset;
 }
 </style>
-<span class="target" id="module-ProxNest.logs"></span><dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.critical_log">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">critical_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.critical_log" title="Permalink to this definition"></a></dt>
-<dd><p>Log a critical message (e.g. core code failures etc).</p>
+<span class="target" id="module-ProxNest.operators.sensing_operators"></span><dl class="py class">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.Identity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ProxNest.operators.sensing_operators.</span></span><span class="sig-name descname"><span class="pre">Identity</span></span><a class="headerlink" href="#ProxNest.operators.sensing_operators.Identity" title="Permalink to this definition"></a></dt>
+<dd><p>Identity sensing operator</p>
+<p class="rubric">Notes</p>
+<p>Implemented originally in optimus-primal.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.Identity.adj_op">
+<span class="sig-name descname"><span class="pre">adj_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.Identity.adj_op" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the forward adjoint operator of the identity class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>message</strong> – Message to log.</p>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Vector to apply identity to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.debug_log">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">debug_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.debug_log" title="Permalink to this definition"></a></dt>
-<dd><p>Log a debug message (e.g. for background logs to assist debugging).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.Identity.dir_op">
+<span class="sig-name descname"><span class="pre">dir_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.Identity.dir_op" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the forward operator of the identity class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>message</strong> – Message to log.</p>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Vector to apply identity to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.info_log">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">info_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.info_log" title="Permalink to this definition"></a></dt>
-<dd><p>Log an information message (e.g. evidence value printing, run completion
-etc).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>message</strong> – Message to log.</p>
-</dd>
-</dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.setup_logging">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_yaml_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.setup_logging" title="Permalink to this definition"></a></dt>
-<dd><p>initialise and configure logging.</p>
-<p>Should be called at the beginning of code to initialise and configure the
-desired logging level. Logging levels can be ints in [0,50] where 10 is
-debug logging and 50 is critical logging.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.MaskedFourier">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ProxNest.operators.sensing_operators.</span></span><span class="sig-name descname"><span class="pre">MaskedFourier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.MaskedFourier" title="Permalink to this definition"></a></dt>
+<dd><p>Masked fourier sensing operator i.e. MRI/Radio imaging.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.MaskedFourier.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.MaskedFourier.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialises the masked fourier sensing operator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>custom_yaml_path</strong> (<em>string</em>) – Complete pathname of desired yaml logging
-configuration. If empty will provide default logging config.</p></li>
-<li><p><strong>default_level</strong> (<em>int</em>) – Logging level at which to configure.</p></li>
+<li><p><strong>dim</strong> (<em>int</em>) – Dimension of square pixel-space image.</p></li>
+<li><p><strong>ratio</strong> (<em>float</em>) – Fraction of measurements observed.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – Raised if logging.yaml is not in ./logs/ directory.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.warning_log">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">warning_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.warning_log" title="Permalink to this definition"></a></dt>
-<dd><p>Log a warning (e.g. for internal code warnings such as large dynamic
-ranges).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.MaskedFourier.adj_op">
+<span class="sig-name descname"><span class="pre">adj_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.MaskedFourier.adj_op" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the forward adjoint operator of the class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>message</strong> – Warning to log.</p>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Vector to apply identity to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.MaskedFourier.dir_op">
+<span class="sig-name descname"><span class="pre">dir_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.MaskedFourier.dir_op" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the forward operator of the class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Vector to apply identity to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 

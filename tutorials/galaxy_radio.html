@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radio Interferometry Example &mdash; ProxNest 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom_tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/dark_mode_css/dark.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script src="../_static/dark_mode_js/default_light.js"></script>
+        <script src="../_static/dark_mode_js/theme_switcher.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Namespaces" href="../api/index.html" />
+    <link rel="prev" title="Denoising Example" href="galaxy_denoising.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/ProxNestLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interactive Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gaussian_benchmark.html"><strong>Gaussian Benchmarking</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy_denoising.html"><strong>Denoising Example</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Radio Interferometry Example</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Load-an-image-and-simulate-some-observations">Load an image and simulate some observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Construct-linear-operators-and-mock-simulated-observations-for-our-stated-problem">Construct linear operators and mock simulated observations for our stated problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Define-all-necessary-parameters-and-posteior-lambda-functions">Define all necessary parameters and posteior lambda functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Select-a-starting-position-X_0-and-execute-the-sampling-method">Select a starting position <span class="math notranslate nohighlight">\(X_0\)</span> and execute the sampling method</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Namespaces</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ProxNest</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><strong>Radio Interferometry Example</strong></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/galaxy_radio.nblink.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Radio-Interferometry-Example">
+<h1><strong>Radio Interferometry Example</strong><a class="headerlink" href="#Radio-Interferometry-Example" title="Permalink to this headline"></a></h1>
+<p>Suppose we collect complete Fourier observations <span class="math notranslate nohighlight">\(y \in \mathbb{R}^M\)</span> of some image <span class="math notranslate nohighlight">\(x \in \mathbb{R}^N\)</span> under a forward model <span class="math notranslate nohighlight">\(\Phi = \mathsf{G}\mathsf{F}\)</span>, where <span class="math notranslate nohighlight">\(M \ll N\)</span> and <span class="math notranslate nohighlight">\(\mathsf{G}\)</span> / <span class="math notranslate nohighlight">\(\mathsf{F}\)</span> are Fourier sub-sampling and transform respectively. Suppose further that our observational instrument introduces some aleoteric uncertainty which can be adequately modelled by a univariate Gaussian <span class="math notranslate nohighlight">\(n = \mathcal{N}(0, \sigma) \in \mathbb{R}^N\)</span>. In
+this case our measurement equation is given by</p>
+<div class="math notranslate nohighlight">
+\[y = \Phi x + n.\]</div>
+<p>Under these conditions the inverse problem of infering <span class="math notranslate nohighlight">\(x\)</span> given <span class="math notranslate nohighlight">\(y\)</span> is heavily degenerate and thus breaks <a class="reference external" href="https://en.wikipedia.org/wiki/Well-posed_problem">Hadamards</a> second condition: the solution is not unique and thus the inverse problem is ill-posed. Given that inferences of <span class="math notranslate nohighlight">\(x\)</span> are degenerate it naturally makes more sense to consider the probability distribution of possible solutions; the posterior distribution. Here we use <strong>proximal nested sampling</strong> (<a class="reference external" href="https://arxiv.org/abs/2106.03646">Cai et al
+2022</a>), which allows us to sample from this posterior distribution, recovering both an estimate of <span class="math notranslate nohighlight">\(x\)</span> and the plausibility of this estimate. Moreover, as this is a nested sampling algorithm we automatically recover the Bayesian evidence, which naturally allows us to carry out model comparison, through which one can <em>e.g.</em> determine which forward models <span class="math notranslate nohighlight">\(\Phi\)</span> are favoured by the data, or calibrate hyper-parameters of the problem such as
+<span class="math notranslate nohighlight">\(\sigma\)</span> and regularisation parameters <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">ProxNest.utils</span> <span class="k">as</span> <span class="nn">utils</span>
+<span class="kn">import</span> <span class="nn">ProxNest.sampling</span> <span class="k">as</span> <span class="nn">sampling</span>
+<span class="kn">import</span> <span class="nn">ProxNest.optimisations</span> <span class="k">as</span> <span class="nn">optimisations</span>
+<span class="kn">import</span> <span class="nn">ProxNest.operators</span> <span class="k">as</span> <span class="nn">operators</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Load-an-image-and-simulate-some-observations">
+<h2>Load an image and simulate some observations<a class="headerlink" href="#Load-an-image-and-simulate-some-observations" title="Permalink to this headline"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load Image</span>
+<span class="n">dim</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">ground_truth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;../data/galaxy_image_</span><span class="si">{}</span><span class="s1">.npy&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">))</span>
+
+<span class="c1"># Normalise magnitude</span>
+<span class="n">ground_truth</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">)</span>
+<span class="n">ground_truth</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">)</span>
+<span class="n">ground_truth</span><span class="p">[</span><span class="n">ground_truth</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Construct-linear-operators-and-mock-simulated-observations-for-our-stated-problem">
+<h2>Construct linear operators and mock simulated observations for our stated problem<a class="headerlink" href="#Construct-linear-operators-and-mock-simulated-observations-for-our-stated-problem" title="Permalink to this headline"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A mock radio imaging forward model with half of the Fourier coefficients masked</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">operators</span><span class="o">.</span><span class="n">sensing_operators</span><span class="o">.</span><span class="n">MaskedFourier</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># A wavelet dictionary in which we can promote sparsity</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">operators</span><span class="o">.</span><span class="n">wavelet_operators</span><span class="o">.</span><span class="n">db_wavelets</span><span class="p">([</span><span class="s2">&quot;db6&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate mock noisy observations y</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">phi</span><span class="o">.</span><span class="n">dir_op</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">)</span>
+<span class="n">ISNR</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">ISNR</span><span class="o">/</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Simulate mock noisy observations</span>
+<span class="n">y</span> <span class="o">+=</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Define-all-necessary-parameters-and-posteior-lambda-functions">
+<h2>Define all necessary parameters and posteior lambda functions<a class="headerlink" href="#Define-all-necessary-parameters-and-posteior-lambda-functions" title="Permalink to this headline"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameter dictionary associated with optimisation problem of resampling from the prior subject to the likelihood iso-ball</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">create_parameters_dict</span><span class="p">(</span>
+           <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span>                    <span class="c1"># Measurements i.e. data</span>
+         <span class="n">Phi</span> <span class="o">=</span> <span class="n">phi</span><span class="p">,</span>                  <span class="c1"># Forward model</span>
+     <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span>                 <span class="c1"># Radius of L2-ball of likelihood</span>
+       <span class="n">tight</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>                <span class="c1"># Is Phi a tight frame or not?</span>
+          <span class="n">nu</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>                    <span class="c1"># Bound on the squared-norm of Phi</span>
+         <span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>                <span class="c1"># Convergence tolerance of algorithm</span>
+    <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>                  <span class="c1"># Maximum number of iterations</span>
+     <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>                    <span class="c1"># Verbosity level</span>
+           <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>                    <span class="c1"># Initial vector for the dual problem</span>
+         <span class="n">pos</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>                 <span class="c1"># Positivity flag</span>
+     <span class="n">reality</span> <span class="o">=</span> <span class="kc">True</span>                  <span class="c1"># Reality flag</span>
+<span class="p">)</span>
+
+<span class="c1"># Options dictionary associated with the overall sampling algorithm</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">create_options_dict</span><span class="p">(</span>
+    <span class="n">samplesL</span> <span class="o">=</span> <span class="mf">1e2</span><span class="p">,</span>                  <span class="c1"># Number of live samples</span>
+    <span class="n">samplesD</span> <span class="o">=</span> <span class="mf">1e3</span><span class="p">,</span>                  <span class="c1"># Number of discarded samples</span>
+    <span class="n">thinning</span> <span class="o">=</span> <span class="mf">1e1</span><span class="p">,</span>                  <span class="c1"># Thinning factor (to mitigate correlations)</span>
+       <span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="p">,</span>                 <span class="c1"># Discretisation stepsize</span>
+        <span class="n">burn</span> <span class="o">=</span> <span class="mf">1e1</span><span class="p">,</span>                  <span class="c1"># Number of burn in samples</span>
+       <span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>                 <span class="c1"># Noise standard deviation of degraded image</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Regularisation parameter</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e5</span>
+
+<span class="c1"># Lambda functions to evaluate cost function</span>
+<span class="n">LogLikeliL</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sol</span> <span class="p">:</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">phi</span><span class="o">.</span><span class="n">dir_op</span><span class="p">(</span><span class="n">sol</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Lambda function for L1-norm wavelet prior backprojection steps</span>
+<span class="n">proxH</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="p">:</span> <span class="n">operators</span><span class="o">.</span><span class="n">proximal_operators</span><span class="o">.</span><span class="n">l1_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">Psi</span><span class="o">=</span><span class="n">psi</span><span class="p">)</span>
+
+<span class="c1"># Lambda function for L2-ball likelihood projection during resampling</span>
+<span class="n">proxB</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">tau</span><span class="p">:</span> <span class="n">optimisations</span><span class="o">.</span><span class="n">l2_ball_proj</span><span class="o">.</span><span class="n">sopt_fast_proj_B2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Select-a-starting-position-X_0-and-execute-the-sampling-method">
+<h2>Select a starting position <span class="math notranslate nohighlight">\(X_0\)</span> and execute the sampling method<a class="headerlink" href="#Select-a-starting-position-X_0-and-execute-the-sampling-method" title="Permalink to this headline"></a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a &#39;dirty image&#39; starting position</span>
+<span class="n">X0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">phi</span><span class="o">.</span><span class="n">adj_op</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="c1"># Perform proximal nested sampling</span>
+<span class="n">NS_BayEvi</span><span class="p">,</span> <span class="n">NS_Trace</span> <span class="o">=</span> <span class="n">sampling</span><span class="o">.</span><span class="n">proximal_nested</span><span class="o">.</span><span class="n">ProxNestedSampling</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">LogLikeliL</span><span class="p">,</span> <span class="n">proxH</span><span class="p">,</span> <span class="n">proxB</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+ProxNest || Initialise: 100%|██████████| 200/200 [00:01&lt;00:00, 123.05it/s]
+ProxNest || Populate: 100%|██████████| 1008/1008 [00:00&lt;00:00, 2571.64it/s]
+ProxNest || Sample: 100%|██████████| 1000/1000 [00:21&lt;00:00, 47.12it/s]
+ProxNest || Compute Weights: 100%|██████████| 1000/1000 [00:00&lt;00:00, 1610097.50it/s]
+ProxNest || Trapezium Integrate: 100%|██████████| 998/998 [00:00&lt;00:00, 2183576.10it/s]
+ProxNest || Estimate Variance: 100%|██████████| 1000/1000 [00:00&lt;00:00, 541130.69it/s]
+ProxNest || Compute Posterior Mean: 100%|██████████| 1000/1000 [00:00&lt;00:00, 593505.59it/s]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.metrics</span> <span class="kn">import</span> <span class="n">peak_signal_noise_ratio</span> <span class="k">as</span> <span class="n">psnr</span>
+<span class="kn">from</span> <span class="nn">skimage.metrics</span> <span class="kn">import</span> <span class="n">structural_similarity</span> <span class="k">as</span> <span class="n">ssim</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;dark_background&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;serif&quot;</span>
+
+<span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">ground_truth</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">NS_Trace</span><span class="p">[</span><span class="s1">&#39;DiscardPostMean&#39;</span><span class="p">]]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Truth&quot;</span><span class="p">,</span> <span class="s2">&quot;Dirty&quot;</span><span class="p">,</span> <span class="s2">&quot;Posterior mean&quot;</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;afmhot&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">images</span><span class="p">),</span> <span class="n">vmin</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">images</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">stats_str</span> <span class="o">=</span> <span class="s1">&#39; (PSNR: </span><span class="si">{}</span><span class="s1">, SSIM: </span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">psnr</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">,</span> <span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">ssim</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">,</span> <span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">stats_str</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_galaxy_radio_12_0.png" src="../_images/tutorials_galaxy_radio_12_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="galaxy_denoising.html" class="btn btn-neutral float-left" title="Denoising Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api/index.html" class="btn btn-neutral float-right" title="Namespaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

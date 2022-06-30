@@ -19,6 +19,8 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script src="../_static/dark_mode_js/default_light.js"></script>
         <script src="../_static/dark_mode_js/theme_switcher.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -76,7 +78,7 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
       <li>&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/logs.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/wav_ops.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -108,71 +110,68 @@
     text-align: unset;
 }
 </style>
-<span class="target" id="module-ProxNest.logs"></span><dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.critical_log">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">critical_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.critical_log" title="Permalink to this definition"></a></dt>
-<dd><p>Log a critical message (e.g. core code failures etc).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>message</strong> – Message to log.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.debug_log">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">debug_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.debug_log" title="Permalink to this definition"></a></dt>
-<dd><p>Log a debug message (e.g. for background logs to assist debugging).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>message</strong> – Message to log.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.info_log">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">info_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.info_log" title="Permalink to this definition"></a></dt>
-<dd><p>Log an information message (e.g. evidence value printing, run completion
-etc).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>message</strong> – Message to log.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.setup_logging">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_yaml_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.setup_logging" title="Permalink to this definition"></a></dt>
-<dd><p>initialise and configure logging.</p>
-<p>Should be called at the beginning of code to initialise and configure the
-desired logging level. Logging levels can be ints in [0,50] where 10 is
-debug logging and 50 is critical logging.</p>
+<span class="target" id="module-ProxNest.operators.wavelet_operators"></span><dl class="py class">
+<dt class="sig sig-object py" id="ProxNest.operators.wavelet_operators.db_wavelets">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ProxNest.operators.wavelet_operators.</span></span><span class="sig-name descname"><span class="pre">db_wavelets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.wavelet_operators.db_wavelets" title="Permalink to this definition"></a></dt>
+<dd><p>Constructs a linear operator for abstract Daubechies Wavelets.</p>
+<p class="rubric">Notes</p>
+<p>Stripped back version of optimus-primal linear operator.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.wavelet_operators.db_wavelets.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.wavelet_operators.db_wavelets.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialises Daubechies Wavelet linear operator class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>custom_yaml_path</strong> (<em>string</em>) – Complete pathname of desired yaml logging
-configuration. If empty will provide default logging config.</p></li>
-<li><p><strong>default_level</strong> (<em>int</em>) – Logging level at which to configure.</p></li>
+<li><p><strong>wav</strong> (<em>string</em>) – Wavelet type (see <a class="reference external" href="https://tinyurl.com/5n7wzpmb">https://tinyurl.com/5n7wzpmb</a>).</p></li>
+<li><p><strong>levels</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – Wavelet levels (scales) to consider.</p></li>
+<li><p><strong>shape</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – Dimensionality of input to wavelet transform.</p></li>
+<li><p><strong>axes</strong> (<em>int</em>) – Which axes to perform wavelet transform (default = all axes).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – Raised if logging.yaml is not in ./logs/ directory.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised when levels are not positive definite.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="ProxNest.logs.warning_log">
-<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">warning_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.warning_log" title="Permalink to this definition"></a></dt>
-<dd><p>Log a warning (e.g. for internal code warnings such as large dynamic
-ranges).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.wavelet_operators.db_wavelets.adj_op">
+<span class="sig-name descname"><span class="pre">adj_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.wavelet_operators.db_wavelets.adj_op" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the forward adjoint abstract wavelet transform of <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>message</strong> – Warning to log.</p>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Array to adjoint wavelet transform.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array of pixel-space coefficients.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.wavelet_operators.db_wavelets.dir_op">
+<span class="sig-name descname"><span class="pre">dir_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.wavelet_operators.db_wavelets.dir_op" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the forward abstract wavelet transform of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Array to wavelet transform.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised when the shape of x is not even in every dimension.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Flattened array of wavelet coefficients.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 

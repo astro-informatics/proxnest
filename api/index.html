@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Namespaces &mdash; ProjectName 0.0.1 documentation</title>
+  <title>Namespaces &mdash; ProxNest 0.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -20,12 +20,14 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/tabs.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script src="../_static/dark_mode_js/default_light.js"></script>
         <script src="../_static/dark_mode_js/theme_switcher.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Notebook Template" href="../tutorials/example_notebook.html" /> 
+    <link rel="prev" title="Radio Interferometry Example" href="../tutorials/galaxy_radio.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,7 +36,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="../index.html">
-            <img src="../_static/placeholder_logo.png" class="logo" alt="Logo"/>
+            <img src="../_static/ProxNestLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.0.1
@@ -51,13 +53,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/install.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Background</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Some background information</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Interactive Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/example_notebook.html">Notebook Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gaussian_benchmark.html"><strong>Gaussian Benchmarking</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/galaxy_denoising.html"><strong>Denoising Example</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/galaxy_radio.html"><strong>Radio Interferometry Example</strong></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current">
@@ -70,7 +70,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">ProjectName</a>
+          <a href="../index.html">ProxNest</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -114,11 +114,453 @@
 </style>
 <div class="section" id="namespaces">
 <h1>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline"></a></h1>
-<p>Automatically generated documentation for <strong>&lt;Project-name&gt;</strong> APIs. All functionality is accessible through a pip installation of the <strong>&lt;Project-name&gt;</strong> package.</p>
+<p>Automatically generated documentation for <code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> APIs. All functionality is accessible through a pip installation of the <code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> package.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Logs</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">some</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">other</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">apis</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><span class="target" id="module-project_name.logs"></span><dl class="py function">
-<dt class="sig sig-object py" id="project_name.logs.critical_log">
-<span class="sig-prename descclassname"><span class="pre">project_name.logs.</span></span><span class="sig-name descname"><span class="pre">critical_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#project_name.logs.critical_log" title="Permalink to this definition"></a></dt>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Sampling</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Optimisations</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Operators</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">Utils</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Logs</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">Proximal Nested</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Sampling Utils</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.sampling.proximal_nested"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.sampling.proximal_nested.ProxNestedSampling">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.sampling.proximal_nested.</span></span><span class="sig-name descname"><span class="pre">ProxNestedSampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LikeliL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proxH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proxB</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.sampling.proximal_nested.ProxNestedSampling" title="Permalink to this definition"></a></dt>
+<dd><p>Executes the proximal nested sampling algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X0</strong> (<em>np.ndarray</em>) – initialisation of the sample chain.</p></li>
+<li><p><strong>LikeliL</strong> (<em>lambda</em>) – function to compute the likelihood value of a sample.</p></li>
+<li><p><strong>proxH</strong> (<em>lambda</em>) – proximity operator of the prior.</p></li>
+<li><p><strong>proxB</strong> (<em>lambda</em>) – proximity operator of the constraint <span class="math notranslate nohighlight">\(\ell_2\)</span>-ball.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – parameters for prior resampling subject to likelihood isocontour.</p></li>
+<li><p><strong>options</strong> (<em>dict</em>) – parameters about number of samples, thinning factor, burnning numbers.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(Evidence, sample trace).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>MATLAB version: Xiaohao Cai (21/02/2019)</p>
+<p>Python version: Matthew Price (9/05/2022)</p>
+</dd></dl>
+
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.sampling.resampling"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.sampling.resampling.reorder_samples">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.sampling.resampling.</span></span><span class="sig-name descname"><span class="pre">reorder_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">likelihood_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.sampling.resampling.reorder_samples" title="Permalink to this definition"></a></dt>
+<dd><p>This program is to find the sample with the smallest likelihood and move it to the end of the list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<em>np.ndarray</em>) – given sample list</p></li>
+<li><p><strong>likeliVal</strong> (<em>np.ndarray</em>) – corresponding likelihood</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reordered version of (samples, likelihood_values)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>MATLAB version: Xiaohao Cai (30/01/2019)</p>
+<p>Python version: Matthew Price (10/05/2022)</p>
+</dd></dl>
+
+</div></div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0"><span class="math notranslate nohighlight">\(\ell_2\)</span>-ball proj</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1"><span class="math notranslate nohighlight">\(\ell_1\)</span>-norm prox</button><button aria-controls="panel-2-2-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-2" name="2-2" role="tab" tabindex="-1">TV-norm prox</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.optimisations.l2_ball_proj"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.optimisations.l2_ball_proj.sopt_fast_proj_B2">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.optimisations.l2_ball_proj.</span></span><span class="sig-name descname"><span class="pre">sopt_fast_proj_B2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.optimisations.l2_ball_proj.sopt_fast_proj_B2" title="Permalink to this definition"></a></dt>
+<dd><p>Fast projection algorithm onto the <span class="math notranslate nohighlight">\(\ell_2\)</span>-ball.</p>
+<p>Compute the projection onto the <span class="math notranslate nohighlight">\(\ell_2\)</span> ball, i.e. solve</p>
+<div class="math notranslate nohighlight">
+\[z^* = \min_{z} ||x - z||_2^2   s.t.  ||y - \Phi z||_2 &lt; \tau\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> is the input vector and the solution <span class="math notranslate nohighlight">\(z^*\)</span> is returned as sol.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – A sample position <span class="math notranslate nohighlight">\(x\)</span> in the posterior space.</p></li>
+<li><p><strong>tau</strong> (<em>float</em>) – Radius of likelihood <span class="math notranslate nohighlight">\(\ell_2\)</span>-ball.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – Dictionary of parameters defining the optimisation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Optimal solution <span class="math notranslate nohighlight">\(z^*\)</span> of proximal projection.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>[1] M.J. Fadili and J-L. Starck, “Monotone operator splitting for optimization problems in sparse recovery” , IEEE ICIP, Cairo, Egypt, 2009.</p>
+<p>[2] Amir Beck and Marc Teboulle, “A Fast Iterative Shrinkage-Thresholding Algorithm for Linear Inverse Problems”,  SIAM Journal on Imaging Sciences 2 (2009), no. 1, 183–202.</p>
+</dd></dl>
+
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.optimisations.l1_norm_prox"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.optimisations.l1_norm_prox.l1_norm_prox">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.optimisations.l1_norm_prox.</span></span><span class="sig-name descname"><span class="pre">l1_norm_prox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.optimisations.l1_norm_prox.l1_norm_prox" title="Permalink to this definition"></a></dt>
+<dd><p>Proximal operator associated with L1 norm.</p>
+<p>Compute the L1 proximal operator, i.e. solve</p>
+<div class="math notranslate nohighlight">
+\[z^* = \min_{z} \frac{1}{2}||x - z||_2^2 + \lambda * ||\Psi^{\dagger} z||_1,\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> is the input vector and the solution <span class="math notranslate nohighlight">\(z^*\)</span> is returned as sol.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – A sample position <span class="math notranslate nohighlight">\(x\)</span> in the posterior space.</p></li>
+<li><p><strong>lamb</strong> (<em>float</em>) – Regularisation parameter.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – Dictionary of parameters defining the optimisation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Optimal solution <span class="math notranslate nohighlight">\(z^*\)</span> of proximal operator.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>[1] M.J. Fadili and J-L. Starck, “Monotone operator splitting for optimization problems in sparse recovery” , IEEE ICIP, Cairo, Egypt, 2009.</p>
+<p>[2] Amir Beck and Marc Teboulle, “A Fast Iterative Shrinkage-Thresholding Algorithm for Linear Inverse Problems”,  SIAM Journal on Imaging Sciences 2 (2009), no. 1, 183–202.</p>
+</dd></dl>
+
+</div><div aria-labelledby="tab-2-2-2" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-2" name="2-2" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.optimisations.tv_norm_prox"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.optimisations.tv_norm_prox.augmented_TV_norm_prox">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.optimisations.tv_norm_prox.</span></span><span class="sig-name descname"><span class="pre">augmented_TV_norm_prox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.optimisations.tv_norm_prox.augmented_TV_norm_prox" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the augmented total variation proximal operator</p>
+<p>Compute the TV proximal operator when an additional linear operator A is
+incorporated in the TV norm, i.e. solve</p>
+<div class="math notranslate nohighlight">
+\[x^* = \min_{x} ||y - x||_2^2 + \lambda * ||A x||_{TV}\]</div>
+<p>where <span class="math notranslate nohighlight">\(y\)</span> is the input vector and the solution <span class="math notranslate nohighlight">\(x^*\)</span> is returned as sol.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – A sample position <span class="math notranslate nohighlight">\(x\)</span> in the posterior space.</p></li>
+<li><p><strong>lamb</strong> (<em>float</em>) – Regularisation parameter.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – Dictionary of parameters defining the optimisation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Optimal solution <span class="math notranslate nohighlight">\(x^*\)</span> of proximal operator.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>[1] A. Beck and  M. Teboulle, “Fast gradient-based algorithms for constrained Total Variation Image Denoising and Deblurring Problems”, IEEE Transactions on Image Processing, VOL. 18, NO. 11, 2419-2434, November 2009.</p>
+</dd></dl>
+
+</div></div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">Proximal</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Wavelet</button><button aria-controls="panel-3-3-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-2" name="3-2" role="tab" tabindex="-1">Sensing</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.operators.proximal_operators"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.operators.proximal_operators.hard_thresh">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.operators.proximal_operators.</span></span><span class="sig-name descname"><span class="pre">hard_thresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.proximal_operators.hard_thresh" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the element-wise hard-thresholding of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Array to threshold.</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – Hard-thresholding level (regularisation parameter)</p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – Weighting parameter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Thresholded coefficients of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.operators.proximal_operators.l1_projection">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.operators.proximal_operators.</span></span><span class="sig-name descname"><span class="pre">l1_projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em>, <em class="sig-param"><span class="pre">T</span></em>, <em class="sig-param"><span class="pre">delta</span></em>, <em class="sig-param"><span class="pre">Psi=&lt;ProxNest.operators.sensing_operators.Identity</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.proximal_operators.l1_projection" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the l1 proximal operator wrt dictionary <span class="math notranslate nohighlight">\(\Psi\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Array to threshold.</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – Soft-thresholding level (regularisation parameter)</p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – Weighting parameter.</p></li>
+<li><p><strong>Psi</strong> (<em>LinearOperator</em>) – Prior dictionary (default = Identity)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Thresholded coefficients of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.operators.proximal_operators.l2_projection">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.operators.proximal_operators.</span></span><span class="sig-name descname"><span class="pre">l2_projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em>, <em class="sig-param"><span class="pre">T</span></em>, <em class="sig-param"><span class="pre">delta</span></em>, <em class="sig-param"><span class="pre">Psi=&lt;ProxNest.operators.sensing_operators.Identity</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.proximal_operators.l2_projection" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the l2 gradient step wrt dictionary <span class="math notranslate nohighlight">\(\Psi\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Array to threshold.</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – Soft-thresholding level (regularisation parameter)</p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – Weighting parameter.</p></li>
+<li><p><strong>Psi</strong> (<em>LinearOperator</em>) – Prior dictionary (default = Identity)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Thresholded coefficients of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.operators.proximal_operators.soft_thresh">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.operators.proximal_operators.</span></span><span class="sig-name descname"><span class="pre">soft_thresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.proximal_operators.soft_thresh" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the element-wise soft-thresholding of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Array to threshold.</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – Soft-thresholding level (regularisation parameter)</p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – Weighting parameter (default = 2).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Thresholded coefficients of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.operators.wavelet_operators"></span><dl class="py class">
+<dt class="sig sig-object py" id="ProxNest.operators.wavelet_operators.db_wavelets">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ProxNest.operators.wavelet_operators.</span></span><span class="sig-name descname"><span class="pre">db_wavelets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.wavelet_operators.db_wavelets" title="Permalink to this definition"></a></dt>
+<dd><p>Constructs a linear operator for abstract Daubechies Wavelets.</p>
+<p class="rubric">Notes</p>
+<p>Stripped back version of optimus-primal linear operator.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.wavelet_operators.db_wavelets.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wav</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.wavelet_operators.db_wavelets.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialises Daubechies Wavelet linear operator class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wav</strong> (<em>string</em>) – Wavelet type (see <a class="reference external" href="https://tinyurl.com/5n7wzpmb">https://tinyurl.com/5n7wzpmb</a>).</p></li>
+<li><p><strong>levels</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – Wavelet levels (scales) to consider.</p></li>
+<li><p><strong>shape</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – Dimensionality of input to wavelet transform.</p></li>
+<li><p><strong>axes</strong> (<em>int</em>) – Which axes to perform wavelet transform (default = all axes).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised when levels are not positive definite.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.wavelet_operators.db_wavelets.adj_op">
+<span class="sig-name descname"><span class="pre">adj_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.wavelet_operators.db_wavelets.adj_op" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the forward adjoint abstract wavelet transform of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Array to adjoint wavelet transform.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array of pixel-space coefficients.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.wavelet_operators.db_wavelets.dir_op">
+<span class="sig-name descname"><span class="pre">dir_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.wavelet_operators.db_wavelets.dir_op" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the forward abstract wavelet transform of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Array to wavelet transform.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised when the shape of x is not even in every dimension.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Flattened array of wavelet coefficients.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div><div aria-labelledby="tab-3-3-2" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-2" name="3-2" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.operators.sensing_operators"></span><dl class="py class">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.Identity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ProxNest.operators.sensing_operators.</span></span><span class="sig-name descname"><span class="pre">Identity</span></span><a class="headerlink" href="#ProxNest.operators.sensing_operators.Identity" title="Permalink to this definition"></a></dt>
+<dd><p>Identity sensing operator</p>
+<p class="rubric">Notes</p>
+<p>Implemented originally in optimus-primal.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.Identity.adj_op">
+<span class="sig-name descname"><span class="pre">adj_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.Identity.adj_op" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the forward adjoint operator of the identity class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Vector to apply identity to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.Identity.dir_op">
+<span class="sig-name descname"><span class="pre">dir_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.Identity.dir_op" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the forward operator of the identity class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Vector to apply identity to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.MaskedFourier">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ProxNest.operators.sensing_operators.</span></span><span class="sig-name descname"><span class="pre">MaskedFourier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.MaskedFourier" title="Permalink to this definition"></a></dt>
+<dd><p>Masked fourier sensing operator i.e. MRI/Radio imaging.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.MaskedFourier.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.MaskedFourier.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialises the masked fourier sensing operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<em>int</em>) – Dimension of square pixel-space image.</p></li>
+<li><p><strong>ratio</strong> (<em>float</em>) – Fraction of measurements observed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.MaskedFourier.adj_op">
+<span class="sig-name descname"><span class="pre">adj_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.MaskedFourier.adj_op" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the forward adjoint operator of the class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Vector to apply identity to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ProxNest.operators.sensing_operators.MaskedFourier.dir_op">
+<span class="sig-name descname"><span class="pre">dir_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.operators.sensing_operators.MaskedFourier.dir_op" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the forward operator of the class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Vector to apply identity to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div></div>
+</div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.utils"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.utils.create_options_dict">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.utils.</span></span><span class="sig-name descname"><span class="pre">create_options_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samplesL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samplesD</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thinning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.utils.create_options_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Compiles a dictionary of option parameters for sampling</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samplesL</strong> (<em>int</em>) – Number of live samples (default = 1e3).</p></li>
+<li><p><strong>samplesD</strong> (<em>int</em>) – Number of discarded samples (default = 1e4).</p></li>
+<li><p><strong>thinning</strong> (<em>int</em>) – Thinning factors (i.e. iterations per sample, default =1 1e2).</p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – Discretisation stepsize (&lt; Lipschitz constant of <span class="math notranslate nohighlight">\(\nabla F\)</span>, default = 1e-8).</p></li>
+<li><p><strong>burn</strong> (<em>int</em>) – Number of burn in samples to be discarded (default = 1e2).</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Noise std of degraded image (default = 1).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary of sampling options.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.utils.create_parameters_dict">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.utils.</span></span><span class="sig-name descname"><span class="pre">create_parameters_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">y=0</span></em>, <em class="sig-param"><span class="pre">Phi=&lt;ProxNest.operators.sensing_operators.Identity</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">Psi=&lt;ProxNest.operators.sensing_operators.Identity</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">epsilon=0.001</span></em>, <em class="sig-param"><span class="pre">tight=True</span></em>, <em class="sig-param"><span class="pre">nu=1</span></em>, <em class="sig-param"><span class="pre">tol=0.001</span></em>, <em class="sig-param"><span class="pre">max_iter=200</span></em>, <em class="sig-param"><span class="pre">verbose=1</span></em>, <em class="sig-param"><span class="pre">u=0</span></em>, <em class="sig-param"><span class="pre">pos=False</span></em>, <em class="sig-param"><span class="pre">reality=False</span></em>, <em class="sig-param"><span class="pre">l1weights=1</span></em>, <em class="sig-param"><span class="pre">rel_obj=0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.utils.create_parameters_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Compiles a dictionary of parameters for code simplicity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – Measurements (default = 0).</p></li>
+<li><p><strong>Phi</strong> (<em>linear operator</em>) – Sensing operator (default = sense.Identity).</p></li>
+<li><p><strong>Psi</strong> (<em>linear operator</em>) – Redundant dictionary (default = sense.Identity).</p></li>
+<li><p><strong>epsilon</strong> (<em>float</em>) – Radius of the <span class="math notranslate nohighlight">\(\ell_2\)</span> ball (default = 1e-3).</p></li>
+<li><p><strong>tight</strong> (<em>bool</em>) – True if A is a tight frame or False otherwise (default = 1).</p></li>
+<li><p><strong>nu</strong> (<em>float</em>) – Bound on the squared-norm of the operator A, i.e. <span class="math notranslate nohighlight">\(||A x||^2 &lt;= \nu ||x||^2\)</span> (default = 1).</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Tolerance, i.e. the algorithms stops if <span class="math notranslate nohighlight">\(\epsilon/(1-tol) &lt;= ||y - A z||_2 &lt;= \epsilon/(1+tol)\)</span> (default = 1e-3).</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em>) – Maximum number of iterations (default: 200).</p></li>
+<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity level (0 = no log, 1 = summary at convergence, 2 = print main steps; default = 1).</p></li>
+<li><p><strong>u</strong> (<em>np.ndarray</em>) – Initial vector for the dual problem, same dimension as y (default = 0).</p></li>
+<li><p><strong>pos</strong> (<em>bool</em>) – Positivity flag (True = positive solution, False (default) general case).</p></li>
+<li><p><strong>reality</strong> (<em>bool</em>) – Reality flag (True = real solution, 0 (default) = general complex case).</p></li>
+<li><p><strong>l1weights</strong> (<em>np.ndarray</em>) – Reweighting of thresholding of <span class="math notranslate nohighlight">\(\ell_1\)</span>-norm (default = 1).</p></li>
+<li><p><strong>rel_obj</strong> (<em>float</em>) – Stopping criterion for <span class="math notranslate nohighlight">\(\ell_1\)</span> proximal sub-iterations (default = 0).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary of parameters.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><span class="target" id="module-ProxNest.logs"></span><dl class="py function">
+<dt class="sig sig-object py" id="ProxNest.logs.critical_log">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">critical_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.critical_log" title="Permalink to this definition"></a></dt>
 <dd><p>Log a critical message (e.g. core code failures etc).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -128,8 +570,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="project_name.logs.debug_log">
-<span class="sig-prename descclassname"><span class="pre">project_name.logs.</span></span><span class="sig-name descname"><span class="pre">debug_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#project_name.logs.debug_log" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ProxNest.logs.debug_log">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">debug_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.debug_log" title="Permalink to this definition"></a></dt>
 <dd><p>Log a debug message (e.g. for background logs to assist debugging).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -139,8 +581,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="project_name.logs.info_log">
-<span class="sig-prename descclassname"><span class="pre">project_name.logs.</span></span><span class="sig-name descname"><span class="pre">info_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#project_name.logs.info_log" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ProxNest.logs.info_log">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">info_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.info_log" title="Permalink to this definition"></a></dt>
 <dd><p>Log an information message (e.g. evidence value printing, run completion
 etc).</p>
 <dl class="field-list simple">
@@ -151,8 +593,8 @@ etc).</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="project_name.logs.setup_logging">
-<span class="sig-prename descclassname"><span class="pre">project_name.logs.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_yaml_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#project_name.logs.setup_logging" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ProxNest.logs.setup_logging">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_yaml_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.setup_logging" title="Permalink to this definition"></a></dt>
 <dd><p>initialise and configure logging.</p>
 <p>Should be called at the beginning of code to initialise and configure the
 desired logging level. Logging levels can be ints in [0,50] where 10 is
@@ -172,8 +614,8 @@ configuration. If empty will provide default logging config.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="project_name.logs.warning_log">
-<span class="sig-prename descclassname"><span class="pre">project_name.logs.</span></span><span class="sig-name descname"><span class="pre">warning_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#project_name.logs.warning_log" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ProxNest.logs.warning_log">
+<span class="sig-prename descclassname"><span class="pre">ProxNest.logs.</span></span><span class="sig-name descname"><span class="pre">warning_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProxNest.logs.warning_log" title="Permalink to this definition"></a></dt>
 <dd><p>Log a warning (e.g. for internal code warnings such as large dynamic
 ranges).</p>
 <dl class="field-list simple">
@@ -183,20 +625,20 @@ ranges).</p>
 </dl>
 </dd></dl>
 
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"></div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"></div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"></div></div>
+</div></div>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../tutorials/example_notebook.html" class="btn btn-neutral float-left" title="Notebook Template" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorials/galaxy_radio.html" class="btn btn-neutral float-left" title="Radio Interferometry Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Author names.</p>
+    <p>&#169; Copyright 2022, Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

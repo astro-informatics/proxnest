@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; ProjectName 0.0.1 documentation</title>
+  <title>Installation &mdash; ProxNest 0.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Some background information" href="../background/index.html" />
-    <link rel="prev" title="&lt;project-name&gt;" href="../index.html" /> 
+    <link rel="next" title="Gaussian Benchmarking" href="../tutorials/gaussian_benchmark.html" />
+    <link rel="prev" title="ProxNest: Proximal nested sampling for high-dimensional Bayesian inference" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,7 +34,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="../index.html">
-            <img src="../_static/placeholder_logo.png" class="logo" alt="Logo"/>
+            <img src="../_static/ProxNestLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.0.1
@@ -55,13 +55,11 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Background</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Some background information</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Interactive Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/example_notebook.html">Notebook Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gaussian_benchmark.html"><strong>Gaussian Benchmarking</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/galaxy_denoising.html"><strong>Denoising Example</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/galaxy_radio.html"><strong>Radio Interferometry Example</strong></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
@@ -74,7 +72,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">ProjectName</a>
+          <a href="../index.html">ProxNest</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -118,37 +116,37 @@
 </style>
 <div class="section" id="installation">
 <span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
-<p>Link to <a class="reference external" href="https://pypi.org">PyPi</a> and provide link for source install.</p>
+<p>We recommend installing <code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> through <a class="reference external" href="https://pypi.org">PyPi</a> , however in some cases one may wish to install <code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> directly from source, which is also relatively straightforward.</p>
 <div class="section" id="quick-install-pypi">
 <h2>Quick install (PyPi)<a class="headerlink" href="#quick-install-pypi" title="Permalink to this headline"></a></h2>
-<p>Install <strong>&lt;Project-name&gt;</strong> from PyPi with a single command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install &lt;Project-name&gt;
+<p>Install <code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> from PyPi with a single command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install ProxNest
 </pre></div>
 </div>
 <p>Check that the package has installed by running</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip list
 </pre></div>
 </div>
-<p>and locate &lt;Project-name&gt;.</p>
+<p>and locate ProxNest.</p>
 </div>
 <div class="section" id="install-from-source-github">
 <h2>Install from source (GitHub)<a class="headerlink" href="#install-from-source-github" title="Permalink to this headline"></a></h2>
 <p>When installing from source we recommend working within an existing conda environment, or creating a fresh conda environment to avoid any dependency conflicts,</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n &lt;Project-name&gt;_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
-conda activate &lt;Project-name&gt;_env
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n proxnest_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+conda activate proxnest_env
 </pre></div>
 </div>
-<p>Once within a fresh environment <strong>&lt;Project-name&gt;</strong> may be installed by cloning the GitHub repository</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/astro-informatics/&lt;Project-name&gt;
-<span class="nb">cd</span> &lt;Project-name&gt;
+<p>Once within a fresh environment <code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> may be installed by cloning the GitHub repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/astro-informatics/proxnest
+<span class="nb">cd</span> proxnest
 </pre></div>
 </div>
 <p>and running the install script, within the root directory, with one command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash build_&lt;Project-name&gt;.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash build_proxnest.sh
 </pre></div>
 </div>
 <p>To check the install has worked correctly run the unit tests with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest --black &lt;Project-name&gt;/tests/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest --black ProxNest/tests/
 </pre></div>
 </div>
 <div class="admonition note">
@@ -162,14 +160,14 @@ conda activate &lt;Project-name&gt;_env
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="&lt;project-name&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../background/index.html" class="btn btn-neutral float-right" title="Some background information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="ProxNest: Proximal nested sampling for high-dimensional Bayesian inference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorials/gaussian_benchmark.html" class="btn btn-neutral float-right" title="Gaussian Benchmarking" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Author names.</p>
+    <p>&#169; Copyright 2022, Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

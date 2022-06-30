@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;project-name&gt; &mdash; ProjectName 0.0.1 documentation</title>
+  <title>ProxNest: Proximal nested sampling for high-dimensional Bayesian inference &mdash; ProxNest 0.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -33,7 +33,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="#">
-            <img src="_static/placeholder_logo.png" class="logo" alt="Logo"/>
+            <img src="_static/ProxNestLogo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.0.1
@@ -50,13 +50,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/install.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Background</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="background/index.html">Some background information</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Interactive Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/example_notebook.html">Notebook Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/gaussian_benchmark.html"><strong>Gaussian Benchmarking</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/galaxy_denoising.html"><strong>Denoising Example</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/galaxy_radio.html"><strong>Radio Interferometry Example</strong></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
@@ -69,7 +67,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">ProjectName</a>
+          <a href="#">ProxNest</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -77,7 +75,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>&lt;project-name&gt;</li>
+      <li>ProxNest: Proximal nested sampling for high-dimensional Bayesian inference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -111,52 +109,73 @@
     text-align: unset;
 }
 </style>
-<p><a class="reference external" href="https://github.com/astro-informatics/code_template"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-PyTemplate-brightgreen.svg?style=flat" /></a> <a class="reference external" href="https://github.com/astro-informatics/code_template/actions/workflows/python.yml"><img alt="Build Status" src="https://github.com/astro-informatics/code_template/actions/workflows/python.yml/badge.svg" /></a> <a class="reference external" href="https://astro-informatics.github.io/code_template"><img alt="Docs" src="https://readthedocs.org/projects/ansicolortags/badge/?version=latest" /></a> <a class="reference external" href="https://codecov.io/gh/astro-informatics/code_template"><img alt="CodeCov" src="https://codecov.io/gh/astro-informatics/code_template/branch/main/graph/badge.svg?token=8QMXOZK746" /></a> <a class="reference external" href="http://perso.crans.org/besson/LICENSE.html"><img alt="GPL License" src="https://img.shields.io/badge/License-GPL-blue.svg" /></a> <a class="reference external" href="https://arxiv.org/abs/xxxx.xxxxx"><img alt="ArXiv" src="http://img.shields.io/badge/arXiv-xxxx.xxxxx-orange.svg?style=flat" /></a></p>
-<div class="section" id="project-name">
-<h1>&lt;project-name&gt;<a class="headerlink" href="#project-name" title="Permalink to this headline"></a></h1>
-<p>Add some basic discussion about <code class="docutils literal notranslate"><span class="pre">&lt;project-name&gt;</span></code> here.</p>
+<p><a class="reference external" href="https://github.com/astro-informatics/proxnest"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-ProxNest-brightgreen.svg?style=flat" /></a> <a class="reference external" href="https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml"><img alt="Build Status" src="https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/astro-informatics/proxnest"><img alt="CodeCov" src="https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN" /></a> <a class="reference external" href="http://perso.crans.org/besson/LICENSE.html"><img alt="GPL License" src="https://img.shields.io/badge/License-GPL-blue.svg" /></a> <a class="reference external" href="https://arxiv.org/abs/2106.03646"><img alt="ArXiv" src="http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat" /></a></p>
+<div class="section" id="proxnest-proximal-nested-sampling-for-high-dimensional-bayesian-inference">
+<h1>ProxNest: Proximal nested sampling for high-dimensional Bayesian inference<a class="headerlink" href="#proxnest-proximal-nested-sampling-for-high-dimensional-bayesian-inference" title="Permalink to this headline"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> is an open source, well tested and documented Python implementation of the <em>proximal nested sampling</em> algorithm (<a class="reference external" href="https://arxiv.org/pdf/2106.03646.pdf">Cai et al. 2022</a>) which is uniquely suited for sampling from very high-dimensional posteriors that are log-concave and potentially not smooth (<em>e.g.</em> Laplace priors). This is achieved by exploiting tools from proximal calculus and Moreau-Yosida regularisation (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-01867195/file/Fonctions_convexes_duales_points_proximaux_Moreau_CRAS_1962.pdf">Moreau 1962</a>) to efficiently sample from the prior subject to the hard likelihood constraint. The resulting Markov chain iterations include a gradient step, approximating (with arbitrary precision) an overdamped Langevin SDE that can scale to very high-dimensional applications.</p>
 </div>
-<div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
-<p>Add some basic installation instructions here.</p>
-</div>
-<div class="section" id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h1>
-<p>Link to the full documentation (when deployed).</p>
-</div>
-<div class="section" id="contributors">
-<h1>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline"></a></h1>
-<p>Author names &amp; Contributors</p>
-</div>
-<div class="section" id="attribution">
-<h1>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline"></a></h1>
-<p>A BibTeX entry for &lt;project-name&gt; is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@article{&lt;project-name&gt;,
-   author = {Author~List},
-    title = {&quot;A totally amazing name&quot;},
-  journal = {ArXiv},
-   eprint = {arXiv:0000.00000},
-     year = {what year is it?!}
-}
+<div class="section" id="basic-usage">
+<h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline"></a></h1>
+<p>The following is a straightforward example application to image denoising (Phi = I), regularised with Daubechies wavelets (DB6).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import relevant modules.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">ProxNest</span>
+
+<span class="c1"># Load your data and set parameters.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">your</span> <span class="n">data</span><span class="o">.</span><span class="n">npy</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">params</span>    <span class="c1"># Parameters of the prior resampling optimisation problem.</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">options</span>  <span class="c1"># Options associated with the sampling strategy.</span>
+
+<span class="c1"># Construct your forward model (phi) and wavelet operators (psi).</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">ProxNest</span><span class="o">.</span><span class="n">operators</span><span class="o">.</span><span class="n">sensing_operators</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">ProxNest</span><span class="o">.</span><span class="n">operators</span><span class="o">.</span><span class="n">wavelet_operators</span><span class="o">.</span><span class="n">db_wavelets</span><span class="p">([</span><span class="s2">&quot;db6&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
+
+<span class="c1"># Define proximal operators for both your likelihood and prior.</span>
+<span class="n">proxH</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="p">:</span> <span class="n">ProxNest</span><span class="o">.</span><span class="n">operators</span><span class="o">.</span><span class="n">proximal_operators</span><span class="o">.</span><span class="n">l1_projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">Psi</span><span class="o">=</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">proxB</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">tau</span><span class="p">:</span> <span class="n">ProxNest</span><span class="o">.</span><span class="n">optimisations</span><span class="o">.</span><span class="n">l2_ball_proj</span><span class="o">.</span><span class="n">sopt_fast_proj_B2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># Write a lambda function to evaluate your likelihood term (here a Gaussian)</span>
+<span class="n">LogLikeliL</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sol</span> <span class="p">:</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">phi</span><span class="o">.</span><span class="n">dir_op</span><span class="p">(</span><span class="n">sol</span><span class="p">),</span> <span class="s1">&#39;fro&#39;</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Perform proximal nested sampling</span>
+<span class="n">BayEvi</span><span class="p">,</span> <span class="n">XTrace</span> <span class="o">=</span> <span class="n">ProxNest</span><span class="o">.</span><span class="n">sampling</span><span class="o">.</span><span class="n">proximal_nested</span><span class="o">.</span><span class="n">ProxNestedSampling</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">phi</span><span class="o">.</span><span class="n">adj_op</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">LogLikeliL</span><span class="p">,</span> <span class="n">proxH</span><span class="p">,</span> <span class="n">proxB</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">options</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="license">
-<h1>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">&lt;project-name&gt;</span></code> is released under the GPL-3 license (see <a class="reference external" href="https://github.com/astro-informatics/code_template/blob/main/LICENSE.txt">LICENSE.txt</a>), subject to
-the non-commercial use condition (see <a class="reference external" href="https://github.com/astro-informatics/code_template/blob/main/LICENSE_EXT.txt">LICENSE_EXT.txt</a>)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LatentWaves</span>
-<span class="n">Copyright</span> <span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="mi">2022</span> <span class="n">Author</span> <span class="n">names</span> <span class="o">&amp;</span> <span class="n">contributors</span>
+<p>At this point you have recovered the tuple <strong>BayEvi</strong> and dict <strong>Xtrace</strong> which contain</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Live</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;samplesL&quot;</span><span class="p">]</span> <span class="c1"># Number of live samples</span>
+<span class="n">Disc</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;samplesD&quot;</span><span class="p">]</span> <span class="c1"># Number of discarded samples</span>
 
-<span class="n">This</span> <span class="n">program</span> <span class="ow">is</span> <span class="n">released</span> <span class="n">under</span> <span class="n">the</span> <span class="n">GPL</span><span class="o">-</span><span class="mi">3</span> <span class="n">license</span> <span class="p">(</span><span class="n">see</span> <span class="n">LICENSE</span><span class="o">.</span><span class="n">txt</span><span class="p">),</span>
-<span class="n">subject</span> <span class="n">to</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">commercial</span> <span class="n">use</span> <span class="n">condition</span> <span class="p">(</span><span class="n">see</span> <span class="n">LICENSE_EXT</span><span class="o">.</span><span class="n">txt</span><span class="p">)</span><span class="o">.</span>
+<span class="c1"># BayEvi is a tuple containing two values:</span>
+<span class="n">BayEvi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Estimate of Bayesian evidence (float).&#39;</span>
+<span class="n">BayEvi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Variance of Bayesian evidence estimate (float).&#39;</span>
 
-<span class="n">This</span> <span class="n">program</span> <span class="ow">is</span> <span class="n">distributed</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">hope</span> <span class="n">that</span> <span class="n">it</span> <span class="n">will</span> <span class="n">be</span> <span class="n">useful</span><span class="p">,</span>
-<span class="n">but</span> <span class="n">WITHOUT</span> <span class="n">ANY</span> <span class="n">WARRANTY</span><span class="p">;</span> <span class="n">without</span> <span class="n">even</span> <span class="n">the</span> <span class="n">implied</span> <span class="n">warranty</span> <span class="n">of</span>
-<span class="n">MERCHANTABILITY</span> <span class="ow">or</span> <span class="n">FITNESS</span> <span class="n">FOR</span> <span class="n">A</span> <span class="n">PARTICULAR</span> <span class="n">PURPOSE</span><span class="o">.</span>
+<span class="c1"># XTrace is a dictionary containing the np.ndarrays:</span>
+<span class="n">XTrace</span><span class="p">[</span><span class="s1">&#39;Liveset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Set of live samples (shape: Live, dim, dim).&#39;</span>
+<span class="n">XTrace</span><span class="p">[</span><span class="s1">&#39;LivesetL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Likelihood of live samples (shape: Live).&#39;</span>
+
+<span class="n">XTrace</span><span class="p">[</span><span class="s1">&#39;Discard&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Set of discarded samples (shape: Disc, dim, dim).&#39;</span>
+<span class="n">XTrace</span><span class="p">[</span><span class="s1">&#39;DiscardL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Likelihood of discarded samples (shape: Disc).&#39;</span>
+<span class="n">XTrace</span><span class="p">[</span><span class="s1">&#39;DiscardW&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Weights of discarded samples (shape: Disc).&#39;</span>
+
+<span class="n">XTrace</span><span class="p">[</span><span class="s1">&#39;DiscardPostProb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Posterior probability of discarded samples (shape: Disc)&#39;</span>
+<span class="n">XTrace</span><span class="p">[</span><span class="s1">&#39;DiscardPostMean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Posterior mean solution (shape: dim, dim)&#39;</span>
 </pre></div>
 </div>
-<div class="toctree-wrapper compound">
+<p>from which one can perform <em>e.g.</em> Bayesian model comparison.</p>
+</div>
+<div class="section" id="referencing">
+<h1>Referencing<a class="headerlink" href="#referencing" title="Permalink to this headline"></a></h1>
+<p>A BibTeX entry for <code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">Cai</span><span class="p">:</span><span class="n">ProxNest</span><span class="p">:</span><span class="mi">2021</span><span class="p">,</span>
+   <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Cai</span><span class="p">,</span> <span class="n">Xiaohao</span> <span class="ow">and</span> <span class="n">McEwen</span><span class="p">,</span> <span class="n">Jason</span><span class="o">~</span><span class="n">D</span><span class="o">.</span> <span class="ow">and</span> <span class="n">Pereyra</span><span class="p">,</span> <span class="n">Marcelo</span><span class="p">},</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;High-dimensional Bayesian model selection by proximal nested sampling&quot;</span><span class="p">},</span>
+  <span class="n">journal</span> <span class="o">=</span> <span class="p">{</span><span class="n">ArXiv</span><span class="p">},</span>
+   <span class="n">eprint</span> <span class="o">=</span> <span class="p">{</span><span class="n">arXiv</span><span class="p">:</span><span class="mf">2106.03646</span><span class="p">},</span>
+     <span class="n">year</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2021</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -176,7 +195,7 @@ the non-commercial use condition (see <a class="reference external" href="https:
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Author names.</p>
+    <p>&#169; Copyright 2022, Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
