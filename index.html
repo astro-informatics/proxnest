@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProxNest: Proximal nested sampling for high-dimensional Bayesian inference &mdash; ProxNest 0.0.1 documentation</title>
+  <title>ProxNest: Proximal nested sampling for high-dimensional Bayesian model selection &mdash; ProxNest 0.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -75,7 +75,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>ProxNest: Proximal nested sampling for high-dimensional Bayesian inference</li>
+      <li>ProxNest: Proximal nested sampling for high-dimensional Bayesian model selection</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -110,8 +110,8 @@
 }
 </style>
 <p><a class="reference external" href="https://github.com/astro-informatics/proxnest"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-ProxNest-brightgreen.svg?style=flat" /></a> <a class="reference external" href="https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml"><img alt="Build Status" src="https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/astro-informatics/proxnest"><img alt="CodeCov" src="https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN" /></a> <a class="reference external" href="http://perso.crans.org/besson/LICENSE.html"><img alt="GPL License" src="https://img.shields.io/badge/License-GPL-blue.svg" /></a> <a class="reference external" href="https://arxiv.org/abs/2106.03646"><img alt="ArXiv" src="http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat" /></a></p>
-<div class="section" id="proxnest-proximal-nested-sampling-for-high-dimensional-bayesian-inference">
-<h1>ProxNest: Proximal nested sampling for high-dimensional Bayesian inference<a class="headerlink" href="#proxnest-proximal-nested-sampling-for-high-dimensional-bayesian-inference" title="Permalink to this headline"></a></h1>
+<div class="section" id="proxnest-proximal-nested-sampling-for-high-dimensional-bayesian-model-selection">
+<h1>ProxNest: Proximal nested sampling for high-dimensional Bayesian model selection<a class="headerlink" href="#proxnest-proximal-nested-sampling-for-high-dimensional-bayesian-model-selection" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">ProxNest</span></code> is an open source, well tested and documented Python implementation of the <em>proximal nested sampling</em> algorithm (<a class="reference external" href="https://arxiv.org/pdf/2106.03646.pdf">Cai et al. 2022</a>) which is uniquely suited for sampling from very high-dimensional posteriors that are log-concave and potentially not smooth (<em>e.g.</em> Laplace priors). This is achieved by exploiting tools from proximal calculus and Moreau-Yosida regularisation (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-01867195/file/Fonctions_convexes_duales_points_proximaux_Moreau_CRAS_1962.pdf">Moreau 1962</a>) to efficiently sample from the prior subject to the hard likelihood constraint. The resulting Markov chain iterations include a gradient step, approximating (with arbitrary precision) an overdamped Langevin SDE that can scale to very high-dimensional applications.</p>
 </div>
 <div class="section" id="basic-usage">
