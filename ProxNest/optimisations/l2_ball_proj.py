@@ -28,7 +28,7 @@ def sopt_fast_proj_B2(x, tau, params):
         [2] Amir Beck and Marc Teboulle, "A Fast Iterative Shrinkage-Thresholding Algorithm for Linear Inverse Problems",  SIAM Journal on Imaging Sciences 2 (2009), no. 1, 183--202.
     """
     # Lambda function for scaling, used for tight frames only
-    sc = lambda z: np.minimum(tau / np.linalg.norm(z), 1)
+    sc = lambda z: z*np.minimum(tau / np.linalg.norm(z), 1)
 
     # TIGHT FRAMES
     if (params["tight"]) and (params["pos"] or params["reality"]):
