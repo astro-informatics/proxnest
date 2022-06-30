@@ -11,7 +11,7 @@
 .. image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
     :target: https://arxiv.org/abs/2106.03646
     
-|logo| Proximal nested sampling for high-dimensional Bayesian inference
+|logo| Proximal nested sampling for high-dimensional Bayesian model selection
 =================================================================================================================
 
 .. |logo| raw:: html
@@ -112,7 +112,7 @@ To check the install has worked correctly run the unit tests with
 
 Contributors
 ============
-`Xiaohao Cai <https://xiaohaocai.netlify.app>`_, `Jason McEwen <http://www.jasonmcewen.org>`_, `Marcelo Pereyra <https://www.macs.hw.ac.uk/~mp71/about.html>`_, `Matthew Price <https://cosmomatt.github.io>`_, and contributors.
+`Matthew Price <https://cosmomatt.github.io>`_, `Xiaohao Cai <https://xiaohaocai.netlify.app>`_, `Jason McEwen <http://www.jasonmcewen.org>`_, `Marcelo Pereyra <https://www.macs.hw.ac.uk/~mp71/about.html>`_, and contributors.
 
 Attribution
 ===========
