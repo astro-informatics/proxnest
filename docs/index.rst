@@ -1,11 +1,9 @@
-|GitHub| |Build Status| |Docs| |CodeCov| |GPL license| |ArXiv|
+|GitHub| |Build Status| |CodeCov| |GPL license| |ArXiv|
 
 .. |GitHub| image:: https://img.shields.io/badge/GitHub-ProxNest-brightgreen.svg?style=flat
     :target: https://github.com/astro-informatics/proxnest
 .. |Build Status| image:: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg
     :target: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml
-.. |Docs| image:: https://github.com/astro-informatics/proxnest/actions/workflows/docs.yml/badge.svg
-    :target: https://astro-informatics.github.io/proxnest
 .. |CodeCov| image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN
     :target: https://codecov.io/gh/astro-informatics/proxnest
 .. |GPL License| image:: https://img.shields.io/badge/License-GPL-blue.svg
@@ -13,10 +11,66 @@
 .. |ArXiv| image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
     :target: https://arxiv.org/abs/2106.03646
 
-ProxNest
-========
+ProxNest: Proximal nested sampling for high-dimensional Bayesian inference
+============================================================================
 
 ``ProxNest`` is an open source, well tested and documented Python implementation of the *proximal nested sampling* algorithm (`Cai et al. 2022 <https://arxiv.org/pdf/2106.03646.pdf>`_) which is uniquely suited for sampling from very high-dimensional posteriors that are log-concave and potentially not smooth (*e.g.* Laplace priors). This is achieved by exploiting tools from proximal calculus and Moreau-Yosida regularisation (`Moreau 1962 <https://hal.archives-ouvertes.fr/hal-01867195/file/Fonctions_convexes_duales_points_proximaux_Moreau_CRAS_1962.pdf>`_) to efficiently sample from the prior subject to the hard likelihood constraint. The resulting Markov chain iterations include a gradient step, approximating (with arbitrary precision) an overdamped Langevin SDE that can scale to very high-dimensional applications.
+
+Basic Usage
+===========
+
+The following is a straightforward example application to image denoising (Phi = I), regularised with Daubechies wavelets (DB6). 
+
+.. code-block:: Python
+
+    # Import relevant modules.
+    import numpy as np 
+    import ProxNest 
+
+    # Load your data and set parameters.
+    data = np.load(<path to your data.npy>)
+    params = params    # Parameters of the prior resampling optimisation problem.
+    options = options  # Options associated with the sampling strategy.
+
+    # Construct your forward model (phi) and wavelet operators (psi).
+    phi = ProxNest.operators.sensing_operators.Identity()
+    psi = ProxNest.operators.wavelet_operators.db_wavelets(["db6"], 2, (dim, dim))
+
+    # Define proximal operators for both your likelihood and prior.
+    proxH = lambda x, T : ProxNest.operators.proximal_operators.l1_projection(x, T, delta, Psi=psi)
+    proxB = lambda x, tau: ProxNest.optimisations.l2_ball_proj.sopt_fast_proj_B2(x, tau, params)
+
+    # Write a lambda function to evaluate your likelihood term (here a Gaussian)
+    LogLikeliL = lambda sol : - np.linalg.norm(y-phi.dir_op(sol), 'fro')**2/(2*sigma**2)
+
+    # Perform proximal nested sampling
+    BayEvi, XTrace = ProxNest.sampling.proximal_nested.ProxNestedSampling(
+        np.abs(phi.adj_op(data)), LogLikeliL, proxH, proxB, params, options
+        )
+
+At this point you have recovered the tuple **BayEvi** and dict **Xtrace** which contain 
+
+.. code-block:: python
+
+    Live = options["samplesL"] # Number of live samples
+    Disc = options["samplesD"] # Number of discarded samples
+
+    # BayEvi is a tuple containing two values:
+    BayEvi[0] = 'Estimate of Bayesian evidence (float).'
+    BayEvi[1] = 'Variance of Bayesian evidence estimate (float).'
+
+    # XTrace is a dictionary containing the np.ndarrays:
+    XTrace['Liveset'] = 'Set of live samples (shape: Live, dim, dim).'
+    XTrace['LivesetL'] = 'Likelihood of live samples (shape: Live).'
+
+    XTrace['Discard'] = 'Set of discarded samples (shape: Disc, dim, dim).'
+    XTrace['DiscardL'] = 'Likelihood of discarded samples (shape: Disc).'
+    XTrace['DiscardW'] = 'Weights of discarded samples (shape: Disc).'
+
+    XTrace['DiscardPostProb'] = 'Posterior probability of discarded samples (shape: Disc)'
+    XTrace['DiscardPostMean'] = 'Posterior mean solution (shape: dim, dim)'
+
+from which one can perform *e.g.* Bayesian model comparison.
 
 Referencing
 ===========
@@ -43,19 +97,12 @@ A BibTeX entry for ``ProxNest`` is:
 
    user_guide/install
 
-
-.. toctree::
-   :hidden:
-   :maxdepth: 2
-   :caption: Background
-
-   background/index
-
 .. toctree::
    :hidden:
    :maxdepth: 1
    :caption: Interactive Tutorials
    
+   tutorials/gaussian_benchmark.nblink
    tutorials/galaxy_denoising.nblink
    tutorials/galaxy_radio.nblink
 
