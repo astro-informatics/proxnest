@@ -96,7 +96,7 @@ The ``ProxNest`` package can also be installed from source by running
 .. code-block:: bash
 
     git clone https://github.com/astro-informatics/proxnest
-    cd proxnest
+    cd harmonic
 
 and running the install script, within the root directory, with one command 
 
@@ -137,7 +137,7 @@ the non-commercial use condition (see `LICENSE_EXT.txt <https://github.com/astro
 .. code-block::
 
      ProxNest
-     Copyright (C) 2022 Xiaohao Cai, Jason McEwen, Marcelo Pereyra, Matthew Price & contributors
+     Copyright (C) 2022 Matthew Price, Xiaohao Cai, Jason McEwen, Marcelo Pereyra & contributors
 
      This program is released under the GPL-3 license (see LICENSE.txt), 
      subject to a non-commercial use condition (see LICENSE_EXT.txt).
