@@ -96,7 +96,7 @@ The ``ProxNest`` package can also be installed from source by running
 .. code-block:: bash
 
     git clone https://github.com/astro-informatics/proxnest
-    cd harmonic
+    cd proxnest
 
 and running the install script, within the root directory, with one command 
 
