@@ -1,11 +1,7 @@
-import numpy as np
-from ProxNest.operators import sensing_operators as sense
-
-
 def create_parameters_dict(
     y=0,
-    Phi=sense.Identity(),
-    Psi=sense.Identity(),
+    Phi=None,
+    Psi=None,
     epsilon=1e-3,
     tight=True,
     nu=1,
@@ -23,9 +19,9 @@ def create_parameters_dict(
     Args:
         y (np.ndarray): Measurements (default = 0).
 
-        Phi (linear operator): Sensing operator (default = sense.Identity).
+        Phi (linear operator): Sensing operator (default = None).
 
-        Psi (linear operator): Redundant dictionary (default = sense.Identity).
+        Psi (linear operator): Redundant dictionary (default = None).
 
         epsilon (float): Radius of the :math:`\ell_2` ball (default = 1e-3).
 

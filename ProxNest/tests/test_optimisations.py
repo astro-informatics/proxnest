@@ -2,6 +2,7 @@ import pytest
 import numpy as np
 import ProxNest.utils as utils
 import ProxNest.optimisations as opts
+from ProxNest.operators import sensing_operators as sense_ops
 
 
 @pytest.mark.parametrize("tight", [True, False])
@@ -20,7 +21,8 @@ def test_l2_ball_projection(tight: bool, pos: bool):
     tau = -LogLikeliL(x0) * 1e-1
 
     # Create a parameters structure.
-    params = utils.create_parameters_dict(y=data, tight=tight, pos=pos, reality=True)
+    id = sense_ops.Identity()
+    params = utils.create_parameters_dict(y=data, Phi=id, Psi=id, tight=tight, pos=pos, reality=True)
 
     # Evaluate the projection algorithm
     z = opts.l2_ball_proj.sopt_fast_proj_B2(x0, tau, params)
@@ -34,7 +36,8 @@ def test_l1_norm_projection_extremes(tight: bool, pos: bool):
     x = np.random.randn(64, 64)
 
     # Create a parameters structure.
-    params = utils.create_parameters_dict(tight=tight, pos=pos, reality=True)
+    id = sense_ops.Identity()
+    params = utils.create_parameters_dict(tight=tight, Phi=id, Psi=id, pos=pos, reality=True)
 
     if tight:
         # Evaluate the l1-norm sub-iterations lambda=0
@@ -56,7 +59,8 @@ def test_l1_norm_projection_specific(tight: bool, pos: bool):
     obj_pred = (3 / 8) * len(x.flatten("C"))
 
     # Create a parameters structure.
-    params = utils.create_parameters_dict(tight=tight, pos=pos, reality=True)
+    id = sense_ops.Identity()
+    params = utils.create_parameters_dict(tight=tight, Phi=id, Psi=id, pos=pos, reality=True)
 
     # Evaluate the l1-norm sub-iterations
     z = opts.l1_norm_prox.l1_norm_prox(x, lamb, params)

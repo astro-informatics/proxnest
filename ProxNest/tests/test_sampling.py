@@ -4,14 +4,13 @@ import pytest
 import ProxNest.utils as utils
 import ProxNest.sampling as sampling
 import ProxNest.optimisations as optimisations
-import ProxNest.operators as operators
+from ProxNest.operators import sensing_operators as sense_ops
 
 def test_against_analytic_gaussian():
     """ Tests ProxNest against analytic Gaussian """
     
     # A simple identity forward model and redundant dictionary
-    phi = operators.sensing_operators.Identity()
-    psi = operators.sensing_operators.Identity()  
+    id = sense_ops.Identity()
     sigma = 1
     iterations = 20
     delta = 1/2
@@ -22,7 +21,7 @@ def test_against_analytic_gaussian():
     # Parameter dictionary associated with optimisation problem of resampling from the prior subject to the likelihood iso-ball
     params = utils.create_parameters_dict(
               y = image,                # Measurements i.e. data
-            Phi = phi,                  # Forward model
+            Phi = id,                   # Forward model
         epsilon = 1e-3,                 # Radius of L2-ball of likelihood 
           tight = True,                 # Is Phi a tight frame or not?
              nu = 1,                    # Bound on the squared-norm of Phi
@@ -55,16 +54,16 @@ def test_against_analytic_gaussian():
         params["y"] = image
 
         # Lambda functions to evaluate cost function
-        LogLikeliL = lambda sol : - np.linalg.norm(image-phi.dir_op(sol))**2/(2*sigma**2)
+        LogLikeliL = lambda sol : - np.linalg.norm(image-id.dir_op(sol))**2/(2*sigma**2)
 
         # Lambda function for L2-norm identity prior backprojection steps
-        proxH = lambda x, T : x - 2*T*psi.adj_op(psi.dir_op(x))*2*delta
+        proxH = lambda x, T : x - 2*T*id.adj_op(id.dir_op(x))*2*delta
 
         # Lambda function for L2-ball likelihood projection during resampling
         proxB = lambda x, tau: optimisations.l2_ball_proj.sopt_fast_proj_B2(x, tau, params)
 
         # Select a starting position
-        X0 = np.abs(phi.adj_op(image))
+        X0 = np.abs(id.adj_op(image))
 
         # Perform proximal nested sampling
         NS_BayEvi, NS_Trace = sampling.proximal_nested.ProxNestedSampling(X0, LogLikeliL, proxH, proxB, params, options)

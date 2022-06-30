@@ -52,8 +52,8 @@ setup(
     author_email="x.cai@soton.ac.uk",
     license="GNU General Public License v3 (GPLv3)",
     install_requires=required,
-    description="Proximal nested sampling for high-dimensional Bayesian inference",
+    description="Proximal nested sampling for high-dimensional Bayesian model selection",
     long_description_content_type="text/x-rst",
     long_description=long_description,
-    packages=["ProxNest"],
+    packages=["ProxNest", "ProxNest.operators", "ProxNest.optimisations", "ProxNest.sampling"],
 )
