@@ -1,4 +1,4 @@
-|GitHub| |Build Status| |CodeCov| |GPL license| |ArXiv|
+|GitHub| |Build Status| |CodeCov| |PyPi| |GPL license| |ArXiv|
 
 .. |GitHub| image:: https://img.shields.io/badge/GitHub-ProxNest-brightgreen.svg?style=flat
     :target: https://github.com/astro-informatics/proxnest
@@ -6,6 +6,8 @@
     :target: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml
 .. |CodeCov| image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN
     :target: https://codecov.io/gh/astro-informatics/proxnest
+.. |PyPi| image:: https://badge.fury.io/py/ProxNest.svg
+    :target: https://badge.fury.io/py/ProxNest
 .. |GPL License| image:: https://img.shields.io/badge/License-GPL-blue.svg
     :target: http://perso.crans.org/besson/LICENSE.html
 .. |ArXiv| image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
