@@ -20,7 +20,9 @@
 
    <img src="./docs/assets/ProxNestLogo.png" align="center" height="80" width="100">
 
-``ProxNest`` is an open source, well tested and documented Python implementation of the *proximal nested sampling* algorithm (`Cai et al. 2022 <https://arxiv.org/pdf/2106.03646.pdf>`_) which is uniquely suited for sampling from very high-dimensional posteriors that are log-concave and potentially not smooth (*e.g.* Laplace priors). This is achieved by exploiting tools from proximal calculus and Moreau-Yosida regularisation (`Moreau 1962 <https://hal.archives-ouvertes.fr/hal-01867195/file/Fonctions_convexes_duales_points_proximaux_Moreau_CRAS_1962.pdf>`_) to efficiently sample from the prior subject to the hard likelihood constraint. The resulting Markov chain iterations include a gradient step, approximating (with arbitrary precision) an overdamped Langevin SDE that can scale to very high-dimensional applications.
+``ProxNest`` is an open source, well tested and documented Python implementation of the *proximal nested sampling* framework (`Cai et al. 2022 <https://arxiv.org/pdf/2106.03646.pdf>`_) to compute the Bayesian model evidence or marginal likelihood in high-dimensional log-convex settings.  Furthermore, non-smooth sparsity-promoting priors are also supported.
+
+This is achieved by exploiting tools from proximal calculus and Moreau-Yosida regularisation (`Moreau 1962 <https://hal.archives-ouvertes.fr/hal-01867195/file/Fonctions_convexes_duales_points_proximaux_Moreau_CRAS_1962.pdf>`_) to efficiently sample from the prior subject to the hard likelihood constraint. The resulting Markov chain iterations include a gradient step, approximating (with arbitrary precision) an overdamped Langevin SDE that can scale to very high-dimensional applications.
 
 Basic Usage
 ===========
