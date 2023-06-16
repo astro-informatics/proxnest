@@ -36,14 +36,14 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
 
     # Simulation setup
     # Use backward-forward splitting to approximate proxPi using proxH and gradF
-    driftIniN = lambda X, delta, lamb: np.real(
-        (1 - delta / (2 * lamb)) * X + delta / (2 * lamb) * proxH(X, lamb)
+    driftIniN = lambda X, delta, gamma: np.real(
+        (1 - delta / (2 * gamma)) * X 
+        + delta / (2 * gamma) * proxH(X, gamma)
     )
-    drift = lambda X, delta, lamb, tau: np.real(
-        (1 - delta / lamb) * X
-        + delta
-        / (2 * lamb)
-        * (proxH(X, lamb) + proxB(X, np.sqrt(tau * 2 * sigma**2)))
+    drift = lambda X, delta, lamb, tau, gamma, sigma: np.real(
+        (1 - delta / (2 * lamb) - delta / (2 * gamma)) * X
+        + delta / (2 * gamma) * proxH(X, gamma)
+        + delta / (2 * lamb) * proxB(X, np.sqrt(tau * 2 * sigma**2))
     )
 
     # Initialize variables
@@ -51,6 +51,9 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
         "delta"
     ]  # delta controls the proposal variance, the step-length and Moreau approximation
     lamb = 5 * delta  # lamb \in [4*delta, 10*delta]
+    # If gamma not provided, copy the lamb value
+    if options["gamma"] is None:
+        gamma = lamb
     Xcur = X0  # set initial state as current state
     tau_0 = -LikeliL(Xcur) * 1e-1
 
@@ -75,7 +78,9 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
     j = 0
     for ii in tqdm(range(200), desc="ProxNest || Initialise"):
         # P-ULA -- MARKOV CHAIN generating initialisation
-        Xcur = drift(Xcur, delta, lamb, tau_0) + np.sqrt(delta) * np.random.randn(
+        Xcur = drift(
+            Xcur, delta, lamb, tau_0, gamma, sigma
+        ) + np.sqrt(delta) * np.random.randn(
             Xcur.shape[0], Xcur.shape[1]
         )
 
@@ -86,7 +91,7 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
     ):
 
         # P-ULA -- MARKOV CHAIN generating live samples
-        Xcur = driftIniN(Xcur, delta, lamb) + np.sqrt(delta) * np.random.randn(
+        Xcur = driftIniN(Xcur, delta, gamma) + np.sqrt(delta) * np.random.randn(
             Xcur.shape[0], Xcur.shape[1]
         )
 
@@ -119,7 +124,9 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
         Xcur = Xtrace["LiveSet"][indNewSample]
 
         # Generate a new sample with likelihood larger than given threshould
-        Xcur = drift(Xcur, delta, lamb, tau) + np.sqrt(delta) * np.random.randn(
+        Xcur = drift(
+            Xcur, delta, lamb, tau, gamma, sigma
+        ) + np.sqrt(delta) * np.random.randn(
             Xcur.shape[0], Xcur.shape[1]
         )
 
