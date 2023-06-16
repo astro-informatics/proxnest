@@ -68,7 +68,7 @@ def create_parameters_dict(
 
 
 def create_options_dict(
-    samplesL=1e3, samplesD=1e4, thinning=1e2, delta=1e-8, burn=1e2, sigma=1
+    samplesL=1e3, samplesD=1e4, thinning=1e2, delta=1e-8, burn=1e2, sigma=1, gamma=None
 ):
     r"""Compiles a dictionary of option parameters for sampling
 
@@ -85,6 +85,8 @@ def create_options_dict(
 
         sigma (float): Noise std of degraded image (default = 1).
 
+        gamma (float or None): Parameter of the learned denoised (prior). If None, it will take the lamb value used for the likelihood.
+
     Returns:
         dict: Dictionary of sampling options.
     """
@@ -95,5 +97,6 @@ def create_options_dict(
     options["delta"] = delta
     options["burn"] = int(burn)
     options["sigma"] = sigma
+    options["gamma"] = gamma
 
     return options
