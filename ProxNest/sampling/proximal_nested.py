@@ -54,6 +54,8 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
     # If gamma not provided, copy the lamb value
     if options["gamma"] is None:
         gamma = lamb
+    else:
+        gamma = options["gamma"]
     Xcur = X0  # set initial state as current state
     tau_0 = -LikeliL(Xcur) * 1e-1
 
