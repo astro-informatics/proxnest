@@ -68,7 +68,7 @@ def create_parameters_dict(
 
 
 def create_options_dict(
-    samplesL=1e3, samplesD=1e4, thinning=1e2, delta=1e-8, burn=1e2, sigma=1, gamma=None
+    samplesL=1e3, samplesD=1e4, thinning=1e2, delta=1e-8, lamb=5e-8, burn=1e2, sigma=1, gamma=None
 ):
     r"""Compiles a dictionary of option parameters for sampling
 
@@ -95,6 +95,7 @@ def create_options_dict(
     options["samplesD"] = int(samplesD)
     options["thinning"] = int(thinning)
     options["delta"] = delta
+    options['lamb'] = lamb
     options["burn"] = int(burn)
     options["sigma"] = sigma
     options["gamma"] = gamma
