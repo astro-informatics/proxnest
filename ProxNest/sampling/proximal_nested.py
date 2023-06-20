@@ -50,7 +50,10 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
     delta = options[
         "delta"
     ]  # delta controls the proposal variance, the step-length and Moreau approximation
-    lamb = 5 * delta  # lamb \in [4*delta, 10*delta]
+    if options['lamb'] is None:
+        lamb = 5 * delta  # lamb \in [4*delta, 10*delta]
+    else:
+        lamb = options['lamb']
     # If gamma not provided, copy the lamb value
     if options["gamma"] is None:
         gamma = lamb
