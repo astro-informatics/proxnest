@@ -60,7 +60,7 @@ psi = operators.wavelet_operators.db_wavelets(["db6"], 2, (dim, dim))
 
 # %%
 # Define noise parameters
-ISNR = 15
+ISNR = 20
 sigma = np.sqrt(np.mean(np.abs(ground_truth)**2)) * 10**(-ISNR/20)
 n = np.random.normal(0, sigma, ground_truth.shape)
 
@@ -113,13 +113,19 @@ gamma_DnCNN = varepsilon
 
 # %%
 
-
-
-
 # Original choice
-delta_step_WAV = 1e-8
-lamb_WAV = 5. * delta_step_WAV
-gamma_WAV = 5. * delta_step_WAV
+# delta_step_WAV = 1e-8
+# lamb_WAV = 5. * delta_step_WAV
+# gamma_WAV = 5. * delta_step_WAV
+
+
+delta_step_WAV = delta
+lamb_WAV = lamb
+gamma_WAV = lamb
+
+
+# Regularisation parameter
+WAV_reg_param = 1e6
 
 
 # %%
@@ -177,14 +183,12 @@ options_WAV = utils.create_options_dict(
 
 
 # %%
-# Regularisation parameter
-delta = 3e5
 
 # Lambda functions to evaluate cost function
 LogLikeliL = lambda sol : - np.linalg.norm(y-phi.dir_op(sol), 'fro')**2/(2*sigma**2)
 
 # Lambda function for L1-norm wavelet prior backprojection steps
-proxH_WAV = lambda x, T : operators.proximal_operators.l1_projection(x, T, delta, Psi=psi)
+proxH_WAV = lambda x, T : operators.proximal_operators.l1_projection(x, T, WAV_reg_param, Psi=psi)
 
 
 # Lambda function for L2-ball likelihood projection during resampling
@@ -356,11 +360,20 @@ print('Starting the log file.\n')
 print('NS_BayEvi_DnCNN: ', NS_BayEvi_DnCNN)
 print('NS_BayEvi_WAV: ', NS_BayEvi_WAV)
 
-print('dirty_DnCNN_SNR: ', dirty_DnCNN_SNR)
+print('\ndirty_DnCNN_SNR: ', dirty_DnCNN_SNR)
 print('post_mean_DnCNN_SNR: ', post_mean_DnCNN_SNR)
 
-print('dirty_WAV_SNR: ', dirty_WAV_SNR)
+print('\ndirty_WAV_SNR: ', dirty_WAV_SNR)
 print('post_mean_WAV_SNR: ', post_mean_WAV_SNR)
+
+
+print('\ndelta_step_DnCNN: ', delta_step_DnCNN)
+print('lamb_DnCNN: ', lamb_DnCNN)
+print('gamma_DnCNN: ', gamma_DnCNN)
+
+print('\ndelta_step_WAV: ', delta_step_WAV)
+print('lamb_WAV: ', lamb_WAV)
+print('gamma_WAV: ', gamma_WAV)
 
 
 ## Close log file
