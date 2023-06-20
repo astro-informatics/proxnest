@@ -58,12 +58,12 @@ psi = operators.wavelet_operators.db_wavelets(["db6"], 2, (dim, dim))
 # %%
 # Simulate mock noisy observations y
 y = phi.dir_op(ground_truth)
-ISNR = 15
+ISNR = 25
 sigma = np.sqrt(np.mean(np.abs(y)**2)) * 10**(-ISNR/20)
-n = np.random.normal(0, sigma, y.shape)
+n = np.random.normal(0, sigma, y[y!=0].shape)
 
 # Simulate mock noisy observations
-y += n
+y[y!=0] += n
 
 # %% [markdown]
 # ### Define all necessary parameters and posteior lambda functions
@@ -92,10 +92,15 @@ gamma_DnCNN = varepsilon
 
 
 # %%
-delta_step_WAV = 1e-8
-lamb_WAV = 5. * delta_step_WAV
-gamma_WAV = 5. * delta_step_WAV
+# Original choice
+# delta_step_WAV = 1e-8
+# lamb_WAV = 5. * delta_step_WAV
+# gamma_WAV = 5. * delta_step_WAV
 
+
+delta_step_WAV = delta
+lamb_WAV = lamb
+gamma_WAV = lamb
 
 # %%
 # Parameter dictionary associated with optimisation problem of resampling from the prior subject to the likelihood iso-ball
@@ -329,12 +334,20 @@ print('Starting the log file.\n')
 print('NS_BayEvi_DnCNN: ', NS_BayEvi_DnCNN)
 print('NS_BayEvi_WAV: ', NS_BayEvi_WAV)
 
-print('dirty_DnCNN_SNR: ', dirty_DnCNN_SNR)
+print('\ndirty_DnCNN_SNR: ', dirty_DnCNN_SNR)
 print('post_mean_DnCNN_SNR: ', post_mean_DnCNN_SNR)
 
-print('dirty_WAV_SNR: ', dirty_WAV_SNR)
+print('\ndirty_WAV_SNR: ', dirty_WAV_SNR)
 print('post_mean_WAV_SNR: ', post_mean_WAV_SNR)
 
+
+print('\ndelta_step_DnCNN: ', delta_step_DnCNN)
+print('lamb_DnCNN: ', lamb_DnCNN)
+print('gamma_DnCNN: ', gamma_DnCNN)
+
+print('\ndelta_step_WAV: ', delta_step_WAV)
+print('lamb_WAV: ', lamb_WAV)
+print('gamma_WAV: ', gamma_WAV)
 
 ## Close log file
 print('\n Good bye..')
