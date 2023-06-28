@@ -50,7 +50,7 @@ ground_truth[ground_truth<0] = 0
 np.random.seed(0)
 
 # A mock radio imaging forward model with half of the Fourier coefficients masked
-phi = operators.sensing_operators.MaskedFourier(dim, 0.3)
+phi = operators.sensing_operators.MaskedFourier(dim, 0.5)
 
 # A wavelet dictionary in which we can promote sparsity
 psi = operators.wavelet_operators.db_wavelets(["db6"], 2, (dim, dim))
@@ -58,7 +58,7 @@ psi = operators.wavelet_operators.db_wavelets(["db6"], 2, (dim, dim))
 # %%
 # Simulate mock noisy observations y
 y = phi.dir_op(ground_truth)
-ISNR = 25
+ISNR = 35
 sigma = np.sqrt(np.mean(np.abs(y)**2)) * 10**(-ISNR/20)
 n = np.random.normal(0, sigma, y[y!=0].shape)
 
@@ -78,16 +78,15 @@ lamb = 0.1 * 0.5 * (1/(2 * L_y + alpha * L / varepsilon ))
 delta = 0.1 * (1/3) * (1/ (L_y + 1/lamb + alpha * L / varepsilon))
 
 
-# %%
-print('varepsilon: ', varepsilon)
-print('lamb: ', lamb)
-print('delta: ', delta)
 
+
+
+# %%
 
 # Translate variables
-delta_step_DnCNN = delta
-lamb_DnCNN = lamb
-gamma_DnCNN = varepsilon
+delta_step_DnCNN = 1e-6
+lamb_DnCNN = 5 * 1e-6
+gamma_DnCNN = sigma**2
 
 
 
@@ -98,9 +97,13 @@ gamma_DnCNN = varepsilon
 # gamma_WAV = 5. * delta_step_WAV
 
 
-delta_step_WAV = delta
-lamb_WAV = lamb
-gamma_WAV = lamb
+delta_step_WAV = 1e-7
+lamb_WAV = 5 * 1e-7
+gamma_WAV = 5 * 1e-7
+
+# Regularisation parameter
+WAV_reg_param = 1e3
+
 
 # %%
 # Parameter dictionary associated with optimisation problem of resampling from the prior subject to the likelihood iso-ball
@@ -110,7 +113,7 @@ params_WAV = utils.create_parameters_dict(
      epsilon = 1e-3,                 # Radius of L2-ball of likelihood 
        tight = False,                # Is Phi a tight frame or not?
           nu = 1,                    # Bound on the squared-norm of Phi
-         tol = 1e-12,                # Convergence tolerance of algorithm
+         tol = 1e-10,                # Convergence tolerance of algorithm
     max_iter = 200,                  # Maximum number of iterations
      verbose = 0,                    # Verbosity level
            u = 0,                    # Initial vector for the dual problem
@@ -124,7 +127,7 @@ params_DnCNN = utils.create_parameters_dict(
      epsilon = 1e-3,                 # Radius of L2-ball of likelihood 
        tight = False,                # Is Phi a tight frame or not?
           nu = 1,                    # Bound on the squared-norm of Phi
-         tol = 1e-12,                # Convergence tolerance of algorithm
+         tol = 1e-10,                # Convergence tolerance of algorithm
     max_iter = 200,                  # Maximum number of iterations
      verbose = 0,                    # Verbosity level
            u = 0,                    # Initial vector for the dual problem
@@ -157,14 +160,12 @@ options_WAV = utils.create_options_dict(
 
 
 # %%
-# Regularisation parameter
-delta = 1e5
 
 # Lambda functions to evaluate cost function
 LogLikeliL = lambda sol : - np.linalg.norm(y-phi.dir_op(sol))**2/(2*sigma**2)
 
 # Lambda function for L1-norm wavelet prior backprojection steps
-proxH_WAV = lambda x, T : operators.proximal_operators.l1_projection(x, T, delta, Psi=psi)
+proxH_WAV = lambda x, T : operators.proximal_operators.l1_projection(x, T, WAV_reg_param, Psi=psi)
 
 
 # Lambda function for L2-ball likelihood projection during resampling
@@ -192,8 +193,8 @@ X0 = np.abs(phi.adj_op(np.copy(y)))
 save_fig_dir = '/disk/xray0/tl3/repos/proxnest/debug/figs/'
 save_var_dir = '/disk/xray0/tl3/repos/proxnest/debug/saved_vars/'
 
-save_prefix_WAV = 'radio_WAV_delta_{:.1e}_lamb_{:.1e}_gamma_{:.1e}'.format(
-    delta_step_WAV, lamb_WAV, gamma_WAV
+save_prefix_WAV = 'radio_WAV_delta_{:.1e}_lamb_{:.1e}_gamma_{:.1e}_WAVregParam_{:.1e}'.format(
+    delta_step_WAV, lamb_WAV, gamma_WAV, WAV_reg_param
 )
 
 save_prefix_DnCNN = 'radio_DnCNN_delta_{:.1e}_lamb_{:.1e}_gamma_{:.1e}'.format(
@@ -348,6 +349,7 @@ print('gamma_DnCNN: ', gamma_DnCNN)
 print('\ndelta_step_WAV: ', delta_step_WAV)
 print('lamb_WAV: ', lamb_WAV)
 print('gamma_WAV: ', gamma_WAV)
+print('WAV_reg_param: ', WAV_reg_param)
 
 ## Close log file
 print('\n Good bye..')

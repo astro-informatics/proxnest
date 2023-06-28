@@ -60,7 +60,7 @@ psi = operators.wavelet_operators.db_wavelets(["db6"], 2, (dim, dim))
 
 # %%
 # Define noise parameters
-ISNR = 20
+ISNR = 15
 sigma = np.sqrt(np.mean(np.abs(ground_truth)**2)) * 10**(-ISNR/20)
 n = np.random.normal(0, sigma, ground_truth.shape)
 
@@ -99,16 +99,15 @@ lamb = 0.1 * 0.5 * (1/(2 * L_y + alpha * L / varepsilon ))
 delta = 0.1 * (1/3) * (1/ (L_y + 1/lamb + alpha * L / varepsilon))
 
 
+
+
 # %%
-print('varepsilon: ', varepsilon)
-print('lamb: ', lamb)
-print('delta: ', delta)
 
 
 # Translate variables
-delta_step_DnCNN = delta
-lamb_DnCNN = lamb
-gamma_DnCNN = varepsilon
+delta_step_DnCNN = 1e-6
+lamb_DnCNN = 5 * 1e-6
+gamma_DnCNN = sigma**2
 
 
 # %%
@@ -119,13 +118,13 @@ gamma_DnCNN = varepsilon
 # gamma_WAV = 5. * delta_step_WAV
 
 
-delta_step_WAV = delta
-lamb_WAV = lamb
-gamma_WAV = lamb
+delta_step_WAV = 1e-7
+lamb_WAV = 5 * 1e-7
+gamma_WAV = 5 * 1e-7
 
 
 # Regularisation parameter
-WAV_reg_param = 1e6
+WAV_reg_param = 1e3
 
 
 # %%
@@ -136,7 +135,7 @@ params_WAV = utils.create_parameters_dict(
      epsilon = 1e-3,                 # Radius of L2-ball of likelihood 
        tight = False,                # Is Phi a tight frame or not?
           nu = 1,                    # Bound on the squared-norm of Phi
-         tol = 1e-12,                # Convergence tolerance of algorithm
+         tol = 1e-10,                # Convergence tolerance of algorithm
     max_iter = 200,                  # Maximum number of iterations
      verbose = 0,                    # Verbosity level
            u = 0,                    # Initial vector for the dual problem
@@ -150,7 +149,7 @@ params_DnCNN = utils.create_parameters_dict(
      epsilon = 1e-3,                 # Radius of L2-ball of likelihood 
        tight = False,                # Is Phi a tight frame or not?
           nu = 1,                    # Bound on the squared-norm of Phi
-         tol = 1e-12,                # Convergence tolerance of algorithm
+         tol = 1e-10,                # Convergence tolerance of algorithm
     max_iter = 200,                  # Maximum number of iterations
      verbose = 0,                    # Verbosity level
            u = 0,                    # Initial vector for the dual problem
@@ -217,8 +216,8 @@ X0 = np.abs(phi.adj_op(np.copy(y)))
 save_fig_dir = '/disk/xray0/tl3/repos/proxnest/debug/figs/'
 save_var_dir = '/disk/xray0/tl3/repos/proxnest/debug/saved_vars/'
 
-save_prefix_WAV = 'denoising_WAV_delta_{:.1e}_lamb_{:.1e}_gamma_{:.1e}'.format(
-    delta_step_WAV, lamb_WAV, gamma_WAV
+save_prefix_WAV = 'denoising_WAV_delta_{:.1e}_lamb_{:.1e}_gamma_{:.1e}_WAVregParam_{:.1e}'.format(
+    delta_step_WAV, lamb_WAV, gamma_WAV, WAV_reg_param
 )
 
 save_prefix_DnCNN = 'denoising_DnCNN_delta_{:.1e}_lamb_{:.1e}_gamma_{:.1e}'.format(
@@ -374,6 +373,7 @@ print('gamma_DnCNN: ', gamma_DnCNN)
 print('\ndelta_step_WAV: ', delta_step_WAV)
 print('lamb_WAV: ', lamb_WAV)
 print('gamma_WAV: ', gamma_WAV)
+print('WAV_reg_param: ', WAV_reg_param)
 
 
 ## Close log file
