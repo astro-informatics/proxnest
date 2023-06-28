@@ -17,6 +17,10 @@ docs/assets/static_notebooks/.temp.*
 dist/
 project_name.egg-info/
 
+debug/saved_vars/*.npy
+debug/saved_vars/*.log
+debug/figs/*.pdf
+papers/MaxEnt/paper_vars/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
