@@ -134,6 +134,14 @@ if __name__ == '__main__':
     )
 
     parser.add_argument(
+        '-r', '--runs',
+        required=False,
+        default=1,
+        type=int,
+        help="Number of runs to perform"
+    )
+
+    parser.add_argument(
         '-l', '--label',
         required=False,
         default="",
@@ -151,4 +159,5 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
 
-    main(args)
+    for i in range(args.runs):
+        main(args)
