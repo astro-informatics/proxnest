@@ -19,10 +19,10 @@ def main(args):
     print(f"DIMENSIONS: {dimensions}")
 
     if not args.save:
-        save_dir = os.getcwd()+"/"+time.strftime("%Y_%m_%d-%H_%M_%S")+"/"
-        os.mkdir(save_dir)
+        save_dir = os.getcwd()+"/"+args.label+"/"+time.strftime("%Y_%m_%d")+"/"+time.strftime("%H_%M_%S")+"/"
+        os.makedirs(save_dir)
     else:
-        save_dir = args.save
+        save_dir = args.save+args.label
     
     log_V_x_Z = []
     gts = []
@@ -132,6 +132,15 @@ if __name__ == '__main__':
         type=str,
         help="Folder to save results to"
     )
+
+    parser.add_argument(
+        '-l', '--label',
+        required=False,
+        default="",
+        type=str,
+        help="Label to add to run output folder"
+    )
+
     parser.add_argument(
         '--seed',
         required=False,
