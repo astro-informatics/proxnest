@@ -26,6 +26,7 @@ def main(args):
     
     log_V_x_Z = []
     gts = []
+    residuals = []
 
     for i in dimensions:
         # Dimension of Gaussian
@@ -99,7 +100,10 @@ def main(args):
 
         log_V_x_Z.append(rescaled_evidence_estimate)
         gts.append(BayEvi_Val_gt_log)
- 
+
+        res = np.abs(rescaled_evidence_estimate - BayEvi_Val_gt_log)
+        residuals.append((dimension,res))
+    
     plt.figure(dpi=300)
     plt.plot(dimensions, log_V_x_Z, color="r")
     plt.plot(dimensions, gts, color="black", linewidth=0.5)
@@ -113,7 +117,8 @@ def main(args):
     with open(save_dir+"config.txt", 'w') as file: 
         print(dict(list(params.items())[3:]), file=file)
         print(options, file=file)
-
+    
+    np.savetxt(save_dir+"residuals.csv", residuals, delimiter=",")
 
 if __name__ == '__main__':
     # PARSE THE ARGS
