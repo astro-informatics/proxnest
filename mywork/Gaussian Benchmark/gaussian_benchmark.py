@@ -9,9 +9,11 @@ import ProxNest.sampling as sampling
 import ProxNest.optimisations as optimisations
 import ProxNest.operators as operators
 
-np.random.seed(0)
 
 def main(args):
+
+    if args.seed:
+        np.random.seed(int(args.seed))
 
     dimensions = np.linspace(args.dims[0], args.dims[1], args.dims[2], dtype=int)
     print(f"DIMENSIONS: {dimensions}")
@@ -130,6 +132,14 @@ if __name__ == '__main__':
         type=str,
         help="Folder to save results to"
     )
+    parser.add_argument(
+        '--seed',
+        required=False,
+        type=str,
+        default=None,
+        help="Seed for reproducibility"
+    )
+    
     args = parser.parse_args()
 
     main(args)
