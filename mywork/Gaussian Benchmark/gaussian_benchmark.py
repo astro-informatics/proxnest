@@ -12,9 +12,6 @@ import ProxNest.operators as operators
 
 def main(args):
 
-    if args.seed:
-        np.random.seed(int(args.seed))
-
     dimensions = np.linspace(args.dims[0], args.dims[1], args.dims[2], dtype=int)
     print(f"DIMENSIONS: {dimensions}")
 
@@ -37,12 +34,17 @@ def main(args):
         psi = operators.sensing_operators.Identity()
 
         # Generate a vector drawn from a Uniform distribution
+        if args.seed:
+            np.random.seed(int(args.seed))
         image = np.random.rand(dimension, 1)
 
         # Simulate some unit variance Gaussian noise on this random vector
         sigma = 1
         n = sigma*np.random.randn(dimension, 1)
         image = image + n
+
+        if args.seed:
+            np.random.seed()
 
         # Define a regularisation parameter (this should be tuned for a given problem)
         delta = 1/2 # This is mu in the paper! == 1/2 for Gaussian Benchmark in Cai et. al.
