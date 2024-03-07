@@ -31,7 +31,7 @@ def sopt_fast_proj_B2(x, tau, params):
     sc = lambda z: z*np.minimum(tau / np.linalg.norm(z), 1)
 
     # TIGHT FRAMES
-    if (params["tight"]) and (params["pos"] or params["reality"]):
+    if (params["tight"]) and not (params["pos"] or params["reality"]):
 
         temp = params["Phi"].dir_op(x) - params["y"]
         sol = x + 1 / params["nu"] * params["Phi"].adj_op(sc(temp) - temp)
@@ -90,7 +90,7 @@ def sopt_fast_proj_B2(x, tau, params):
             elif iter >= params["max_iter"]:
                 crit_B2 = "MAX_IT"
                 break
-
+            
             # Projection onto the L2 ball
             t = (1 + np.sqrt(1 + 4 * told**2)) / 2
             ratio = np.minimum(1, tau / norm_proj)
@@ -102,6 +102,7 @@ def sopt_fast_proj_B2(x, tau, params):
             sol = x - params["Phi"].adj_op(u)
 
             # Projection onto the non-negative orthant (positivity constraint)
+            
             if params["pos"]:
                 sol = np.real(sol)
                 sol[sol < 0] = 0
