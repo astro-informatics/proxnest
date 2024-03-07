@@ -24,8 +24,7 @@ def main(args):
     else:
         save_dir = args.save+args.label
     
-    log_V_x_Z = []
-    gts = []
+    predictions = []
     residuals = []
 
     for i in dimensions:
@@ -98,15 +97,16 @@ def main(args):
 
         #V = np.sqrt(((2*np.pi)**dimension)/((2*delta)**dimension)) # Appendix A1 Cai et. al.
 
-        log_V_x_Z.append(rescaled_evidence_estimate)
-        gts.append(BayEvi_Val_gt_log)
+        predictions.append([dimension,BayEvi_Val_gt_log,rescaled_evidence_estimate])
 
         res = np.abs(rescaled_evidence_estimate - BayEvi_Val_gt_log)
         residuals.append((dimension,res))
     
+    predictions = np.array(predictions)
+
     plt.figure(dpi=300)
-    plt.plot(dimensions, log_V_x_Z, color="r")
-    plt.plot(dimensions, gts, color="black", linewidth=0.5)
+    plt.plot(dimensions, predictions[:,2], color="r", marker="x", linewidth=0.5, markersize=3)
+    plt.plot(dimensions, predictions[:,1], color="black", linewidth=0.5)
     plt.ylim(-250,100)
     plt.xlim(0,200)
     plt.scatter(dimensions, log_V_x_Z, color="r", marker="x", linewidth=0.5)
@@ -119,6 +119,7 @@ def main(args):
         print(options, file=file)
     
     np.savetxt(save_dir+"residuals.csv", residuals, delimiter=",")
+    np.savetxt(save_dir+"predictions.csv", predictions, delimiter=",")
 
 if __name__ == '__main__':
     # PARSE THE ARGS
