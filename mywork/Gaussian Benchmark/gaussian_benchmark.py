@@ -106,14 +106,18 @@ def main(args):
     
     predictions = np.array(predictions)
 
+    plt.rcParams["mathtext.fontset"] = "stix"
     plt.figure(dpi=300)
-    plt.plot(dimensions, predictions[:,2], color="r", marker="x", linewidth=0.5, markersize=3)
-    plt.plot(dimensions, predictions[:,1], color="black", linewidth=0.5)
+    plt.plot(dimensions, predictions[:,2], color="tomato", marker="x", linewidth=0.5, markersize=2, 
+             label="ProxNest")
+    plt.plot(dimensions, predictions[:,1], color="black", linewidth=0.5, label="Ground truth")
     plt.ylim(-250,100)
     plt.xlim(0,200)
-    plt.scatter(dimensions, log_V_x_Z, color="r", marker="x", linewidth=0.5)
     plt.xlabel("Dimensions")
     plt.ylabel(r"$\log (V \times \mathcal{Z})$")
+    plt.title(f"pos = {params["pos"]}, reality = {params["reality"]}, tight = {params["tight"]}, delta = {options["delta"]}\n"
+              +"samplesL = {:.1e}, samplesD = {:.1e}".format(options["samplesL"], options["samplesD"]), 
+              fontsize=10)
     plt.savefig(save_dir+"plot")
     
     with open(save_dir+"config.txt", 'w') as file: 
