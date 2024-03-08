@@ -68,7 +68,16 @@ def create_parameters_dict(
 
 
 def create_options_dict(
-    samplesL=1e3, samplesD=1e4, thinning=1e2, delta=1e-8, burn=1e2, sigma=1
+    samplesL=1e3,
+    samplesD=1e4,
+    lv_thinning=1e1,
+    lv_thinning_init=1e1,
+    MH_step=False,
+    warm_start_coeff=1e1,
+    delta=1e-8,
+    lamb=None,
+    burn=1e2,
+    sigma=1
 ):
     r"""Compiles a dictionary of option parameters for sampling
 
@@ -91,9 +100,16 @@ def create_options_dict(
     options = {}
     options["samplesL"] = int(samplesL)
     options["samplesD"] = int(samplesD)
-    options["thinning"] = int(thinning)
+    options["lv_thinning"] = int(lv_thinning)
+    options["lv_thinning_init"] = int(lv_thinning_init)
+    options["MH_step"] = MH_step
+    options["warm_start_coeff"] = warm_start_coeff
     options["delta"] = delta
     options["burn"] = int(burn)
     options["sigma"] = sigma
+    if lamb is None:
+        options["lamb"] = 5 * delta
+    else:
+        options["lamb"] = lamb
 
     return options
