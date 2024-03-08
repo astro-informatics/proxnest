@@ -50,9 +50,9 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
     delta = options[
         "delta"
     ]  # delta controls the proposal variance, the step-length and Moreau approximation
-    lamb = 5 * delta  # lamb \in [4*delta, 10*delta]
+    lamb = options['lamb']# 5 * delta  # lamb \in [4*delta, 10*delta]
     Xcur = X0  # set initial state as current state
-    tau_0 = -LikeliL(Xcur) * 1e-1
+    tau_0 = -LikeliL(Xcur) * options['warm_start_coeff'] # 1e-1
 
     lg.info_log("Allocating memory and populating initial live-samples...")
 
@@ -81,7 +81,7 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
 
     # Obtain samples from priors
     for ii in tqdm(
-        range(2, NumLiveSetSamples * options["thinning"] + options["burn"]),
+        range(2, NumLiveSetSamples * options["lv_thinning_init"] + options["burn"]),
         desc="ProxNest || Populate",
     ):
 
@@ -90,9 +90,9 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
             Xcur.shape[0], Xcur.shape[1]
         )
 
-        # Save sample (with thinning)
+        # Save sample (with lv_thinning_init)
         if (ii > options["burn"]) and not (
-            (ii - options["burn"]) % options["thinning"]
+            (ii - options["burn"]) % options["lv_thinning_init"]
         ):
             # Record the current sample in the live set and its likelihood
             Xtrace["LiveSet"][j] = Xcur
@@ -112,16 +112,31 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
         # Compute the smallest threshould wrt live samples' likelihood
         tau = -Xtrace["LiveSetL"][-1]  # - 1e-2
 
-        # Randomly select a sample in the live set as a starting point
-        indNewSample = (
-            np.floor(np.random.rand() * (NumLiveSetSamples - 1)).astype(int) - 1
-        )
-        Xcur = Xtrace["LiveSet"][indNewSample]
+        target_tau = tau.copy()
+        current_tau = target_tau + 1  # This is just to enter the Metropolis-Hasting recursion
 
-        # Generate a new sample with likelihood larger than given threshould
-        Xcur = drift(Xcur, delta, lamb, tau) + np.sqrt(delta) * np.random.randn(
-            Xcur.shape[0], Xcur.shape[1]
-        )
+
+
+        # Enter Metropolis-Hasting recursion. If MH step is set to False we exit after one iteration
+        while current_tau > target_tau:
+
+            # Randomly select a sample in the live set as a starting point
+            indNewSample = (
+                np.floor(np.random.rand() * (NumLiveSetSamples - 1)).astype(int) - 1
+            )
+            Xcur = Xtrace["LiveSet"][indNewSample]
+
+            # Generate a new sample with likelihood larger than given threshould
+            for jj in range(options['lv_thinning']):
+                Xcur = drift(Xcur, delta, lamb, tau) + np.sqrt(delta) * np.random.randn(
+                    Xcur.shape[0], Xcur.shape[1]
+                )
+
+            if not options['MH_step']:
+                # Exit MH recursion
+                break
+
+            current_tau = np.sum(np.sum(np.abs(y - Phi.dir_op(Xcur)) ** 2)) / (2 * sigma**2)
 
         # check if the new sample is inside l2-ball (metropolis-hasting); if
         # not, force the new sample into L2-ball
