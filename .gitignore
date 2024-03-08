@@ -17,4 +17,6 @@ docs/assets/static_notebooks/.temp.*
 dist/
 project_name.egg-info/
 
-/mywork/Gaussian Benchmark/20* 
+/mywork/Gaussian Benchmark/*
+!/mywork/Gaussian Benchmark/*.py
+!/mywork/Gaussian Benchmark/*.ipynb
