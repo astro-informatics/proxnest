@@ -20,3 +20,4 @@ project_name.egg-info/
 /mywork/Gaussian Benchmark/*
 !/mywork/Gaussian Benchmark/*.py
 !/mywork/Gaussian Benchmark/*.ipynb
+ProxNest.egg-info/*
