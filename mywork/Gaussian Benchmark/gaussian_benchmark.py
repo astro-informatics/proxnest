@@ -54,14 +54,14 @@ def main(args):
                 y = image,                # Measurements i.e. data
                 Phi = phi,                  # Forward model
             epsilon = 1e-3,                 # Radius of L2-ball of likelihood                   ## Not used
-            tight = True,                 # Is Phi a tight frame or not?
+            tight = False,                 # Is Phi a tight frame or not?
                 nu = 1,                    # Bound on the squared-norm of Phi                   ## Should be 1
                 tol = 1e-10,                # Convergence tolerance of algorithm
-            max_iter = 200,                  # Maximum number of iterations
+            max_iter = 200,                  # Maximum number of iterations                     ## 200 in src_proxnest
             verbose = 0,                    # Verbosity level
                 u = 0,                    # Initial vector for the dual problem                 ## Not used
-                pos = True,                 # Positivity flag                                   ## True in Cai et. al.
-            reality = True                  # Reality flag
+                pos = False,                 # Positivity flag                                   ## True in Cai et. al.
+            reality = False                  # Reality flag
         )
 
         # Options dictionary associated with the overall sampling algorithm
@@ -69,8 +69,8 @@ def main(args):
             samplesL = 2e2,                  # Number of live samples                           ## 2e2 in Cai et. al.
             samplesD = 3e3,                  # Number of discarded samples                      ## 3e3 in Cai et. al.
             thinning = 1e1,                  # Thinning factor (to mitigate correlations)       ## 1e1 in Cai et. al.
-            delta = 1e-2,                 # Discretisation stepsize
-                burn = 1e2,                  # Number of burn in samples
+            delta = 1e-2,                 # Discretisation stepsize                             ## 10*1e-1 in src_proxnest
+                burn = 1e2,                  # Number of burn in samples                        ## 1e2 in src_proxnest
             sigma = sigma                 # Noise standard deviation of degraded image          ## Should be 1
         )
 
