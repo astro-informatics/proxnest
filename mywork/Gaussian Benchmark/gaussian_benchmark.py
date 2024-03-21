@@ -51,27 +51,31 @@ def main(args):
 
         # Parameter dictionary associated with optimisation problem of resampling from the prior subject to the likelihood iso-ball
         params = utils.create_parameters_dict(
-                y = image,                # Measurements i.e. data
-                Phi = phi,                  # Forward model
-            epsilon = 1e-3,                 # Radius of L2-ball of likelihood                   ## Not used
-            tight = False,                 # Is Phi a tight frame or not?
-                nu = 1,                    # Bound on the squared-norm of Phi                   ## Should be 1
-                tol = 1e-10,                # Convergence tolerance of algorithm
-            max_iter = 200,                  # Maximum number of iterations                     ## 200 in src_proxnest
-            verbose = 0,                    # Verbosity level
-                u = 0,                    # Initial vector for the dual problem                 ## Not used
-                pos = False,                 # Positivity flag                                   ## True in Cai et. al.
-            reality = False                  # Reality flag
+                   y = image,                # Measurements i.e. data
+                 Phi = phi,                  # Forward model
+             epsilon = 1e-3,                 # Radius of L2-ball of likelihood                            ## Not used
+               tight = False,                # Is Phi a tight frame or not?
+                  nu = 1,                    # Bound on the squared-norm of Phi                           ## Should be 1
+                 tol = 1e-10,                # Convergence tolerance of algorithm
+            max_iter = 200,                  # Maximum number of iterations                               ## 200 in src_proxnest
+             verbose = 0,                    # Verbosity level
+                   u = 0,                    # Initial vector for the dual problem                        ## Not used
+                 pos = False,                # Positivity flag                                            ## True in Cai et. al.
+             reality = False                 # Reality flag
         )
 
         # Options dictionary associated with the overall sampling algorithm
         options = utils.create_options_dict(
-            samplesL = 2e2,                  # Number of live samples                           ## 2e2 in Cai et. al.
-            samplesD = 3e3,                  # Number of discarded samples                      ## 3e3 in Cai et. al.
-            thinning = 1e1,                  # Thinning factor (to mitigate correlations)       ## 1e1 in Cai et. al.
-            delta = 1e-2,                 # Discretisation stepsize                             ## 10*1e-1 in src_proxnest
-                burn = 1e2,                  # Number of burn in samples                        ## 1e2 in src_proxnest
-            sigma = sigma                 # Noise standard deviation of degraded image          ## Should be 1
+            samplesL = 2e2,                  # Number of live samples                                      ## 2e2 in Cai et. al.
+            samplesD = 3e3,                  # Number of discarded samples                                 ## 3e3 in Cai et. al.
+    lv_thinning_init = 1e1,                  # Thinning factor in initialisation
+         lv_thinning = 1e1,                  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
+             MH_step = False,                 # Metropolis-Hastings step
+    warm_start_coeff = 1e1,                  # Warm start coefficient
+               delta = 1e-2,                 # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
+                lamb = 5e-2,                 # Moreau-Yosida approximation parameter, usually `5 * delta`
+                burn = 1e2,                  # Number of burn in samples                                   ## 1e2 in src_proxnest
+               sigma = sigma                 # Noise standard deviation of degraded image                  ## Should be 1
         )
 
         # Lambda functions to evaluate cost function
@@ -115,9 +119,9 @@ def main(args):
     plt.xlim(0,200)
     plt.xlabel("Dimensions")
     plt.ylabel(r"$\log (V \times \mathcal{Z})$")
-    plt.title(f"pos = {params["pos"]}, reality = {params["reality"]}, tight = {params["tight"]}, delta = {options["delta"]}\n"
-              +"samplesL = {:.1e}, samplesD = {:.1e}".format(options["samplesL"], options["samplesD"]), 
-              fontsize=10)
+    plt.title(f"delta = {options["delta"]}, "+"samplesL = {:.1e}, samplesD = {:.1e}, MH_step = {}, \n lv_thinning_init = {:.1e}, lv_thinning = {:.1e}, warm_start_coeff = {:.1e}, lamb = {:.1e}"
+              .format(options["samplesL"], options["samplesD"], options["MH_step"], options["lv_thinning_init"], options["lv_thinning"], options["warm_start_coeff"], options["lamb"]), 
+              fontsize=7)
     plt.savefig(save_dir+"plot")
     
     with open(save_dir+"config.txt", 'w') as file: 
@@ -171,5 +175,6 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
 
+    
     for i in range(args.runs):
         main(args)
