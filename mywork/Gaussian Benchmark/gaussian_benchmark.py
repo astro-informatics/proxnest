@@ -11,7 +11,7 @@ import ProxNest.operators as operators
 
 
 def main(args):
-
+    start = time.time()
     dimensions = np.linspace(args.dims[0], args.dims[1], args.dims[2], dtype=int)
     print(f"DIMENSIONS: {dimensions}")
 
@@ -107,7 +107,11 @@ def main(args):
 
         res = np.abs(rescaled_evidence_estimate - BayEvi_Val_gt_log)
         residuals.append((dimension,res))
-    
+
+    end = time.time()
+    elapsed = end - start
+
+
     predictions = np.array(predictions)
 
     plt.rcParams["mathtext.fontset"] = "stix"
