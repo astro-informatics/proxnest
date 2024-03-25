@@ -66,12 +66,12 @@ def main(args):
 
         # Options dictionary associated with the overall sampling algorithm
         options = utils.create_options_dict(
-            samplesL = 2e2,                  # Number of live samples                                      ## 2e2 in Cai et. al.
-            samplesD = 3e3,                  # Number of discarded samples                                 ## 3e3 in Cai et. al.
+            samplesL = 1e3,                  # Number of live samples                                      ## 2e2 in Cai et. al.
+            samplesD = 1e4,                  # Number of discarded samples                                 ## 3e3 in Cai et. al.
     lv_thinning_init = 1e1,                  # Thinning factor in initialisation
          lv_thinning = 1e1,                  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
              MH_step = False,                 # Metropolis-Hastings step
-    warm_start_coeff = 1e1,                  # Warm start coefficient
+    warm_start_coeff = 1e-1,                  # Warm start coefficient
                delta = 1e-2,                 # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
                 lamb = 5e-2,                 # Moreau-Yosida approximation parameter, usually `5 * delta`
                 burn = 1e2,                  # Number of burn in samples                                   ## 1e2 in src_proxnest
@@ -97,7 +97,6 @@ def main(args):
 
         detPar = 1/(2*delta+1/sigma**2)
         ySquare= np.linalg.norm(image,'fro')**2
-
         # Ground truth
         BayEvi_Val_gt_log = np.log(np.sqrt(((2*np.pi)**dimension)*(detPar**dimension))) + (-ySquare/(2*sigma**2)) + (detPar/2)*(ySquare/sigma**4)
 
@@ -119,12 +118,12 @@ def main(args):
     plt.plot(dimensions, predictions[:,2], color="tomato", marker="x", linewidth=0.5, markersize=2, 
              label="ProxNest")
     plt.plot(dimensions, predictions[:,1], color="black", linewidth=0.5, label="Ground truth")
-    plt.ylim(-250,100)
+    plt.ylim(-10,60)
     plt.xlim(0,200)
     plt.xlabel("Dimensions")
     plt.ylabel(r"$\log (V \times \mathcal{Z})$")
-    plt.title(f"delta = {options["delta"]}, "+"samplesL = {:.1e}, samplesD = {:.1e}, MH_step = {}, \n lv_thinning_init = {:.1e}, lv_thinning = {:.1e}, warm_start_coeff = {:.1e}, lamb = {:.1e}"
-              .format(options["samplesL"], options["samplesD"], options["MH_step"], options["lv_thinning_init"], options["lv_thinning"], options["warm_start_coeff"], options["lamb"]), 
+    plt.title(f"delta = {options["delta"]}, "+"samplesL = {:.1e}, samplesD = {:.1e}, MH_step = {}, \n lv_thinning_init = {:.1e}, lv_thinning = {:.1e}, warm_start_coeff = {:.1e}, lamb = {:.1e}, time = {:.1e}"
+              .format(options["samplesL"], options["samplesD"], options["MH_step"], options["lv_thinning_init"], options["lv_thinning"], options["warm_start_coeff"], options["lamb"], elapsed), 
               fontsize=7)
     plt.savefig(save_dir+"plot")
     
@@ -179,6 +178,5 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
 
-    
     for i in range(args.runs):
         main(args)
