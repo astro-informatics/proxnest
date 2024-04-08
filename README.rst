@@ -1,18 +1,20 @@
-.. image:: https://img.shields.io/badge/GitHub-ProxNest-brightgreen.svg?style=flat
+.. |github| image:: https://img.shields.io/badge/GitHub-ProxNest-brightgreen.svg?style=flat
     :target: https://github.com/astro-informatics/proxnest
-.. image:: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg?branch=main
+.. |tests| image:: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml/badge.svg?branch=main
     :target: https://github.com/astro-informatics/proxnest/actions/workflows/tests.yml
-.. image:: https://github.com/astro-informatics/proxnest/actions/workflows/docs.yml/badge.svg
+.. |docs| image:: https://github.com/astro-informatics/proxnest/actions/workflows/docs.yml/badge.svg
     :target: https://astro-informatics.github.io/proxnest
-.. image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN
+.. |codecov| image:: https://codecov.io/gh/astro-informatics/proxnest/branch/main/graph/badge.svg?token=oGowwdoMRN
     :target: https://codecov.io/gh/astro-informatics/proxnest
-.. image:: https://badge.fury.io/py/ProxNest.svg
+.. |pypi| image:: https://badge.fury.io/py/ProxNest.svg
     :target: https://badge.fury.io/py/ProxNest
-.. image:: https://img.shields.io/badge/License-GPL-blue.svg
+.. |licence| image:: https://img.shields.io/badge/License-GPL-blue.svg
     :target: http://perso.crans.org/besson/LICENSE.html
-.. image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
+.. |arxiv| image:: http://img.shields.io/badge/arXiv-2106.03646-orange.svg?style=flat
     :target: https://arxiv.org/abs/2106.03646
-    
+
+|github| |tests| |docs| |codecov| |pypi| |licence| |arxiv|
+
 |logo| Proximal nested sampling for high-dimensional Bayesian model selection
 =================================================================================================================
 
