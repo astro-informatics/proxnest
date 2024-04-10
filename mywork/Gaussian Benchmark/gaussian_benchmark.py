@@ -69,7 +69,7 @@ def main(args):
             samplesL = 1e3,                  # Number of live samples                                      ## 2e2 in Cai et. al.
             samplesD = 1e4,                  # Number of discarded samples                                 ## 3e3 in Cai et. al.
     lv_thinning_init = 1e1,                  # Thinning factor in initialisation
-         lv_thinning = 1e1,                  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
+         lv_thinning = 1e0,                  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
              MH_step = False,                 # Metropolis-Hastings step
     warm_start_coeff = 1e-1,                  # Warm start coefficient
                delta = 1e-2,                 # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
@@ -125,7 +125,20 @@ def main(args):
     plt.title(f"delta = {options["delta"]}, "+"samplesL = {:.1e}, samplesD = {:.1e}, MH_step = {}, \n lv_thinning_init = {:.1e}, lv_thinning = {:.1e}, warm_start_coeff = {:.1e}, lamb = {:.1e}, time = {:.1e}"
               .format(options["samplesL"], options["samplesD"], options["MH_step"], options["lv_thinning_init"], options["lv_thinning"], options["warm_start_coeff"], options["lamb"], elapsed), 
               fontsize=7)
-    plt.savefig(save_dir+"plot")
+    plt.savefig(save_dir+"plot1")
+
+    plt.figure(dpi=300)
+    plt.plot(dimensions, predictions[:,2], color="tomato", marker="x", linewidth=0.5, markersize=2, 
+             label="ProxNest")
+    plt.plot(dimensions, predictions[:,1], color="black", linewidth=0.5, label="Ground truth")
+    plt.ylim(-250,100)
+    plt.xlim(0,200)
+    plt.xlabel("Dimensions")
+    plt.ylabel(r"$\log (V \times \mathcal{Z})$")
+    plt.title(f"delta = {options["delta"]}, "+"samplesL = {:.1e}, samplesD = {:.1e}, MH_step = {}, \n lv_thinning_init = {:.1e}, lv_thinning = {:.1e}, warm_start_coeff = {:.1e}, lamb = {:.1e}, time = {:.1e}"
+              .format(options["samplesL"], options["samplesD"], options["MH_step"], options["lv_thinning_init"], options["lv_thinning"], options["warm_start_coeff"], options["lamb"], elapsed), 
+              fontsize=7)
+    plt.savefig(save_dir+"plot2")
     
     with open(save_dir+"config.txt", 'w') as file: 
         print(dict(list(params.items())[3:]), file=file)
