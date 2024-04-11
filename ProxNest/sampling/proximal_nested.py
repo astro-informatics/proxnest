@@ -141,6 +141,8 @@ def ProxNestedSampling(X0, LikeliL, proxH, proxB, params, options):
         # check if the new sample is inside l2-ball (metropolis-hasting); if
         # not, force the new sample into L2-ball
         if np.sum(np.sum(np.abs(y - Phi.dir_op(Xcur)) ** 2)) > tau * 2 * sigma**2:
+            if params['verbose']:
+                print("Projecting to L2 ball")
             Xcur = proxB(Xcur, np.sqrt(tau * 2 * sigma**2))
 
         # Record the sample discarded and its likelihood
