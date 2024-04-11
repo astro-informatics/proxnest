@@ -13,6 +13,8 @@ def create_parameters_dict(
     reality=False,
     l1weights=1,
     rel_obj=0,
+    GT_ball_rad=0,
+    init_ball_rad=0,
 ):
     r"""Compiles a dictionary of parameters for code simplicity
 
@@ -63,6 +65,8 @@ def create_parameters_dict(
     params["reality"] = reality
     params["l1weights"] = l1weights
     params["rel_obj"] = rel_obj
+    params["GT_ball_rad"] = GT_ball_rad
+    params["init_ball_rad"] = init_ball_rad    
 
     return params
 
