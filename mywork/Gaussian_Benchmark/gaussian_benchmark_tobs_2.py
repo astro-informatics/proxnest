@@ -132,9 +132,9 @@ def main(args):
     plt.figure(dpi=200)
     plt.plot(dimensions, mean_predictions[:,2], color="tomato", marker="x", linewidth=0.5, markersize=2, 
              label="ProxNest")
-    plt.plot(dimensions, mean_predictions[:,1], color="black", linewidth=0.5, label="Ground truth")
-    plt.ylim(-10,60)
-    plt.xlim(0,args.dims[1])
+    plt.plot(dimensions, mean_predictions[:,1], color="black", marker="o", linewidth=0.5, label="Ground truth")
+    plt.ylim(0,np.max(mean_predictions[:,1:])+10)
+    plt.xlim(0,args.dims[1]+10)
     plt.xlabel("Dimensions")
     plt.ylabel(r"$\log (V \times \mathcal{Z})$")
     title_str = "delta = {:.1e}, runs = {:d}, samplesL = {:.1e}, samplesD = {:.1e}, MH_step = {}, \n lv_thinning_init = {:.1e}, lv_thinning = {:.1e}, warm_start_coeff = {:.1e}, lamb = {:.1e}, time = {:.1e}".format(
@@ -142,20 +142,22 @@ def main(args):
     ) 
     plt.title(title_str, fontsize=7)
     plt.savefig(save_dir+"plot1.pdf")
+    plt.close()
 
-    plt.figure(dpi=200)
-    plt.plot(dimensions, mean_predictions[:,2], color="tomato", marker="x", linewidth=0.5, markersize=2, 
-             label="ProxNest")
-    plt.plot(dimensions, mean_predictions[:,1], color="black", linewidth=0.5, label="Ground truth")
-    plt.ylim(-250,100)
-    plt.xlim(0,args.dims[1])
-    plt.xlabel("Dimensions")
-    plt.ylabel(r"$\log (V \times \mathcal{Z})$")
-    title_str = "delta = {:.1e}, runs = {:d}, samplesL = {:.1e}, samplesD = {:.1e}, MH_step = {}, \n lv_thinning_init = {:.1e}, lv_thinning = {:.1e}, warm_start_coeff = {:.1e}, lamb = {:.1e}, time = {:.1e}".format(
-        options['delta'], args.runs, options["samplesL"], options["samplesD"], options["MH_step"], options["lv_thinning_init"], options["lv_thinning"], options["warm_start_coeff"], options["lamb"], elapsed
-    ) 
-    plt.title(title_str, fontsize=7)
-    plt.savefig(save_dir+"plot2.pdf")
+    # plt.figure(dpi=200)
+    # plt.plot(dimensions, mean_predictions[:,2], color="tomato", marker="x", linewidth=0.5, markersize=2, 
+    #          label="ProxNest")
+    # plt.plot(dimensions, mean_predictions[:,1], color="black", linewidth=0.5, label="Ground truth")
+    # plt.ylim(-250,100)
+    # plt.xlim(0,args.dims[1])
+    # plt.xlabel("Dimensions")
+    # plt.ylabel(r"$\log (V \times \mathcal{Z})$")
+    # title_str = "delta = {:.1e}, runs = {:d}, samplesL = {:.1e}, samplesD = {:.1e}, MH_step = {}, \n lv_thinning_init = {:.1e}, lv_thinning = {:.1e}, warm_start_coeff = {:.1e}, lamb = {:.1e}, time = {:.1e}".format(
+    #     options['delta'], args.runs, options["samplesL"], options["samplesD"], options["MH_step"], options["lv_thinning_init"], options["lv_thinning"], options["warm_start_coeff"], options["lamb"], elapsed
+    # ) 
+    # plt.title(title_str, fontsize=7)
+    # plt.savefig(save_dir+"plot2.pdf")
+    # plt.close()
     
     with open(save_dir+"config.txt", 'w') as file: 
         print(dict(list(params.items())[3:]), file=file)

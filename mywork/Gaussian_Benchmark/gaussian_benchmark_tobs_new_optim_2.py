@@ -76,8 +76,8 @@ def main(args):
 
             # Options dictionary associated with the overall sampling algorithm
             options = utils.create_options_dict(
-                samplesL = 1e3,                  # Number of live samples                                      ## 2e2 in Cai et. al.
-                samplesD = 1e4,                  # Number of discarded samples                                 ## 3e3 in Cai et. al.
+                samplesL = 1e4,                  # Number of live samples                                      ## 2e2 in Cai et. al.
+                samplesD = 1e5,                  # Number of discarded samples                                 ## 3e3 in Cai et. al.
         lv_thinning_init = 1e1,                  # Thinning factor in initialisation
             lv_thinning = 1e0,                  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
                 MH_step = False,                 # Metropolis-Hastings step
