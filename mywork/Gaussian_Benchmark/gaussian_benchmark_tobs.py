@@ -168,6 +168,7 @@ def main(args):
         mean_predictions[:, 1],
         color="black",
         marker="o",
+        markersize=2,
         linewidth=0.5,
         label="Ground truth",
     )

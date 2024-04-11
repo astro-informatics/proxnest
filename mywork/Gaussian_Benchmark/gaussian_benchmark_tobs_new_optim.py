@@ -91,7 +91,7 @@ def main(args):
                 lv_thinning_init=1e1,  # Thinning factor in initialisation
                 lv_thinning=1e0,  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
                 MH_step=False,  # Metropolis-Hastings step
-                warm_start_coeff=1e-1,  # Warm start coefficient
+                warm_start_coeff=1e1,  # Warm start coefficient
                 delta=1e-2,  # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
                 lamb=5e-2,  # Moreau-Yosida approximation parameter, usually `5 * delta`
                 burn=1e2,  # Number of burn in samples                                   ## 1e2 in src_proxnest
@@ -171,6 +171,7 @@ def main(args):
         color="black",
         marker="o",
         linewidth=0.5,
+        markersize=2,
         label="Ground truth",
     )
     plt.ylim(0, np.max(mean_predictions[:, 1:]) + 10)
