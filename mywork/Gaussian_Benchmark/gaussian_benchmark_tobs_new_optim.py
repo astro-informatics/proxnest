@@ -55,6 +55,7 @@ def main(args):
             if args.seed:
                 np.random.seed(int(args.seed))
             image = np.random.rand(dimension, 1)
+            x_GT = np.copy(image)
 
             # Simulate some unit variance Gaussian noise on this random vector
             sigma = 1
@@ -68,35 +69,6 @@ def main(args):
             delta = (
                 1 / 2
             )  # This is mu in the paper! == 1/2 for Gaussian Benchmark in Cai et. al.
-
-            # Parameter dictionary associated with optimisation problem of resampling from the prior subject to the likelihood iso-ball
-            params = utils.create_parameters_dict(
-                y=image,  # Measurements i.e. data
-                Phi=phi,  # Forward model
-                epsilon=1e-3,  # Radius of L2-ball of likelihood                            ## Not used
-                tight=False,  # Is Phi a tight frame or not?
-                nu=1,  # Bound on the squared-norm of Phi                           ## Should be 1
-                tol=1e-10,  # Convergence tolerance of algorithm
-                max_iter=200,  # Maximum number of iterations                               ## 200 in src_proxnest
-                verbose=0,  # Verbosity level
-                u=0,  # Initial vector for the dual problem                        ## Not used
-                pos=False,  # Positivity flag                                            ## True in Cai et. al.
-                reality=False,  # Reality flag
-            )
-
-            # Options dictionary associated with the overall sampling algorithm
-            options = utils.create_options_dict(
-                samplesL=1e3,  # Number of live samples                                      ## 2e2 in Cai et. al.
-                samplesD=1e4,  # Number of discarded samples                                 ## 3e3 in Cai et. al.
-                lv_thinning_init=1e1,  # Thinning factor in initialisation
-                lv_thinning=1e0,  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
-                MH_step=False,  # Metropolis-Hastings step
-                warm_start_coeff=1e0,  # Warm start coefficient
-                delta=1e-2,  # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
-                lamb=5e-2,  # Moreau-Yosida approximation parameter, usually `5 * delta`
-                burn=1e2,  # Number of burn in samples                                   ## 1e2 in src_proxnest
-                sigma=sigma,  # Noise standard deviation of degraded image                  ## Should be 1
-            )
 
             # Lambda functions to evaluate cost function
             LogLikeliL = lambda sol: -np.linalg.norm(image - phi.dir_op(sol)) ** 2 / (
@@ -116,6 +88,41 @@ def main(args):
             X0 = np.abs(
                 phi.adj_op(image)
             )  # image has negative values, so this is different to just image
+
+
+            GT_tau = - LogLikeliL(x_GT)
+            init_tau = - LogLikeliL(X0)
+
+            # Parameter dictionary associated with optimisation problem of resampling from the prior subject to the likelihood iso-ball
+            params = utils.create_parameters_dict(
+                y=image,  # Measurements i.e. data
+                Phi=phi,  # Forward model
+                epsilon=1e-3,  # Radius of L2-ball of likelihood                            ## Not used
+                tight=False,  # Is Phi a tight frame or not?
+                nu=1,  # Bound on the squared-norm of Phi                           ## Should be 1
+                tol=1e-10,  # Convergence tolerance of algorithm
+                max_iter=200,  # Maximum number of iterations                               ## 200 in src_proxnest
+                verbose=1,  # Verbosity level
+                u=0,  # Initial vector for the dual problem                        ## Not used
+                pos=False,  # Positivity flag                                            ## True in Cai et. al.
+                reality=False,  # Reality flag
+                GT_ball_rad=np.sqrt(GT_tau * 2 * sigma**2),
+                init_ball_rad=np.sqrt(init_tau * 2 * sigma**2),
+            )
+
+            # Options dictionary associated with the overall sampling algorithm
+            options = utils.create_options_dict(
+                samplesL=1e3,  # Number of live samples                                      ## 2e2 in Cai et. al.
+                samplesD=1e4,  # Number of discarded samples                                 ## 3e3 in Cai et. al.
+                lv_thinning_init=1e1,  # Thinning factor in initialisation
+                lv_thinning=1e0,  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
+                MH_step=False,  # Metropolis-Hastings step
+                warm_start_coeff=1e1,  # Warm start coefficient
+                delta=1e-1,  # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
+                lamb=5e-2,  # Moreau-Yosida approximation parameter, usually `5 * delta`
+                burn=1e2,  # Number of burn in samples                                   ## 1e2 in src_proxnest
+                sigma=sigma,  # Noise standard deviation of degraded image                  ## Should be 1
+            )
 
             # Perform proximal nested sampling
             # np.seterr(invalid='raise')
