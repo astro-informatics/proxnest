@@ -67,7 +67,7 @@ def main(args):
 
             # Define a regularisation parameter (this should be tuned for a given problem)
             delta = (
-                1 / 2
+                0.2
             )  # This is mu in the paper! == 1/2 for Gaussian Benchmark in Cai et. al.
 
             # Lambda functions to evaluate cost function
@@ -76,7 +76,7 @@ def main(args):
             )
 
             # Lambda function for L2-norm identity prior backprojection steps
-            proxH = lambda x, T: x - 2 * T * psi.adj_op(psi.dir_op(x)) * 2 * delta
+            proxH = lambda x, T: x - 2 * T * psi.adj_op(psi.dir_op(x)) * delta # * 2 
 
             # Lambda function for L2-ball likelihood projection during resampling
             # proxB = lambda x, tau: optimisations.l2_ball_proj.sopt_fast_proj_B2(x, tau, params)
@@ -112,14 +112,14 @@ def main(args):
 
             # Options dictionary associated with the overall sampling algorithm
             options = utils.create_options_dict(
-                samplesL=1e3,  # Number of live samples                                      ## 2e2 in Cai et. al.
-                samplesD=1e4,  # Number of discarded samples                                 ## 3e3 in Cai et. al.
+                samplesL=5e3,  # Number of live samples                                      ## 2e2 in Cai et. al.
+                samplesD=5e4,  # Number of discarded samples                                 ## 3e3 in Cai et. al.
                 lv_thinning_init=1e1,  # Thinning factor in initialisation
                 lv_thinning=1e0,  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
-                MH_step=False,  # Metropolis-Hastings step
+                MH_step=True,  # Metropolis-Hastings step
                 warm_start_coeff=1e1,  # Warm start coefficient
-                delta=1e-1,  # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
-                lamb=5e-2,  # Moreau-Yosida approximation parameter, usually `5 * delta`
+                delta=1e-2,  # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
+                lamb=5 * 1e-2,  # Moreau-Yosida approximation parameter, usually `5 * delta`
                 burn=1e2,  # Number of burn in samples                                   ## 1e2 in src_proxnest
                 sigma=sigma,  # Noise standard deviation of degraded image                  ## Should be 1
             )
