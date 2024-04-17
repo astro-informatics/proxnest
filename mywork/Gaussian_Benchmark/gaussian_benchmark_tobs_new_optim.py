@@ -115,11 +115,11 @@ def main(args):
                 samplesL=5e3,  # Number of live samples                                      ## 2e2 in Cai et. al.
                 samplesD=5e4,  # Number of discarded samples                                 ## 3e3 in Cai et. al.
                 lv_thinning_init=1e1,  # Thinning factor in initialisation
-                lv_thinning=1e0,  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
+                lv_thinning=2e0,  # Thinning factor in the sample update                        ## 1e1 in Cai et. al.
                 MH_step=True,  # Metropolis-Hastings step
-                warm_start_coeff=1e1,  # Warm start coefficient
-                delta=1e-2,  # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
-                lamb=5 * 1e-2,  # Moreau-Yosida approximation parameter, usually `5 * delta`
+                warm_start_coeff=2e1,  # Warm start coefficient
+                delta=2e-2,  # Discretisation stepsize                                     ## 10*1e-1 in src_proxnest
+                lamb=5 * 2e-2,  # Moreau-Yosida approximation parameter, usually `5 * delta`
                 burn=1e2,  # Number of burn in samples                                   ## 1e2 in src_proxnest
                 sigma=sigma,  # Noise standard deviation of degraded image                  ## Should be 1
             )
@@ -129,9 +129,18 @@ def main(args):
             NS_BayEvi, _ = sampling.proximal_nested.ProxNestedSampling(
                 X0, LogLikeliL, proxH, proxB, params, options
             )
-            rescaled_evidence_estimate = NS_BayEvi[0] + np.log(np.pi / delta) * (
-                dimension / 2
-            )  # == log_V_x_Z
+            # rescaled_evidence_estimate = NS_BayEvi[0] - (
+            #     0.5 * dimension * (np.log(np.pi / delta) + np.log(2 * np.pi * sigma**2))
+            # )  # == log_V_x_Z
+            # Original scaling (includes the prior volume)
+            rescaled_evidence_estimate = NS_BayEvi[0] + 0.5 * dimension * np.log(np.pi / delta) 
+            # Including the prior and likelihood volume
+            # rescaled_evidence_estimate = NS_BayEvi[0] + 0.5 * dimension * (
+            #     2 * np.log(2 * np.pi) * np.log(sigma) - np.log(2 * delta) 
+            # )
+            # Without including any volume
+            # rescaled_evidence_estimate = NS_BayEvi[0]
+            # == log_V_x_Z
 
             detPar = 1 / (2 * delta + 1 / sigma**2)
             ySquare = np.linalg.norm(image, "fro") ** 2
@@ -183,7 +192,10 @@ def main(args):
         markersize=2,
         label="Ground truth",
     )
-    plt.ylim(0, np.max(mean_predictions[:, 1:]) + 10)
+    plt.ylim(
+        np.min([0, np.min(mean_predictions[:, 1:]) - 10]),
+        np.max([mean_predictions[:, 1:]]) + 10
+    )
     plt.xlim(0, args.dims[1] + 10)
     plt.xlabel("Dimensions")
     plt.ylabel(r"$\log (V \times \mathcal{Z})$")
