@@ -200,7 +200,7 @@ def new_sopt_fast_proj_B2(x, tau, params):
         while not inside:
 
             # Projection onto the L2-ball
-            if params["verbose"] > 1:
+            if params["verbose"] > 2:
                 print("  Proj. B2:")
 
             # Residual
@@ -212,7 +212,7 @@ def new_sopt_fast_proj_B2(x, tau, params):
             norm_proj = np.linalg.norm(res)
 
             # Log
-            if params["verbose"] > 1:
+            if params["verbose"] > 2:
                 print(
                     "   Iter {}, epsilon = {}, ||y - Phi(x)||_2 = {}".format(
                         iter, tau, norm_res
@@ -256,11 +256,16 @@ def new_sopt_fast_proj_B2(x, tau, params):
 
     # Log after the projection onto the L2-ball
     if params["verbose"] >= 1:
-        temp = params["Phi"].dir_op(sol)
-        print(
-            "  Proj. B2: \tball_rad = {}, \t||y - Phi(x)||_2 = {}, \n \t\tGT_ball_rad = {} \tinit_ball_rad = {},\n \t\t {}, iter = {}".format(
-                tau, np.linalg.norm(params["y"] - temp), params["GT_ball_rad"], params["init_ball_rad"], crit_B2, iter
+
+        if (params["verbose"] >= 2 and crit_B2 == "IN_BALL") or (
+            crit_B2 != "IN_BALL"
+        ):
+
+            temp = params["Phi"].dir_op(sol)
+            print(
+                "  Proj. B2: \tball_rad = {}, \t||y - Phi(x)||_2 = {}, \n \t\tGT_ball_rad = {} \tinit_ball_rad = {},\n \t\t {}, iter = {}".format(
+                    tau, np.linalg.norm(params["y"] - temp), params["GT_ball_rad"], params["init_ball_rad"], crit_B2, iter
+                )
             )
-        )
 
     return sol
