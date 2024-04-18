@@ -325,11 +325,11 @@ if __name__ == "__main__":
 
     lv_thinning_init, lv_thinning, warm_start_coeff, lamb, prior_regulariser = list(defaults.values())
 
-    # if args.b:
+    if args.b:
 
-    #     param_name = "Baseline"
-    #     value = ""
-    #     main(args)
+        param_name = "Baseline"
+        value = ""
+        main(args)
 
     if args.p:
 
@@ -357,16 +357,16 @@ if __name__ == "__main__":
         for param_name in args.p:
             print(param_name)
 
-            # params_in_use = defaults.copy()
+            params_in_use = defaults.copy()
 
-            # for n, p in enumerate(params[param_name]):
-            #     params_in_use[param_name] = p
-            #     value = p
-            #     print(f"Testing {param_name} = {p}")
-            #     lv_thinning_init, lv_thinning, warm_start_coeff, lamb, prior_regulariser = list(params_in_use.values())
-            #     main(args)
+            for n, p in enumerate(params[param_name]):
+                params_in_use[param_name] = p
+                value = p
+                print(f"Testing {param_name} = {p}")
+                lv_thinning_init, lv_thinning, warm_start_coeff, lamb, prior_regulariser = list(params_in_use.values())
+                main(args)
 
-            plot(param_name, params[param_name])
+                plot(param_name, params[param_name])
 
 
             #     df = pd.read_csv(save_dir+"mean_predictions.csv",  names=("dim", "gt", "pred"))
